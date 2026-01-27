@@ -1,0 +1,86 @@
+{
+  "config": {
+    "k": 10,
+    "seed": 0,
+    "n_agents": 30,
+    "n_iters": 100,
+    "split": "train",
+    "n_images": 200,
+    "algorithms": [
+      "GWO",
+      "WOA",
+      "PA1",
+      "PA2",
+      "PA3",
+      "PA4",
+      "PA5"
+    ]
+  },
+  "statistics": {
+    "GWO": {
+      "n_images": 200,
+      "dice_mean": 0.13321435239210522,
+      "dice_std": 0.07509928349751438,
+      "dice_min": 0.0,
+      "dice_max": 0.33918045085920473,
+      "entropy_mean": 0.04933209452181231,
+      "time_mean": 3.2223352432250976
+    },
+    "WOA": {
+      "n_images": 200,
+      "dice_mean": 0.11863570549306326,
+      "dice_std": 0.07572319300656268,
+      "dice_min": 0.0,
+      "dice_max": 0.3068447010706123,
+      "entropy_mean": 0.04954628640820958,
+      "time_mean": 3.121547988653183
+    },
+    "PA1": {
+      "n_images": 200,
+      "dice_mean": 0.12677531014542726,
+      "dice_std": 0.07803686116898001,
+      "dice_min": 0.0,
+      "dice_max": 0.3204111362900615,
+      "entropy_mean": 0.04947263819732207,
+      "time_mean": 3.1555182218551634
+    },
+    "PA2": {
+      "n_images": 200,
+      "dice_mean": 0.11417118607253159,
+      "dice_std": 0.06917573313363039,
+      "dice_min": 0.0,
+      "dice_max": 0.2951633907750083,
+      "entropy_mean": 0.04953317477416684,
+      "time_mean": 3.145963715314865
+    },
+    "PA3": {
+      "n_images": 200,
+      "dice_mean": 0.1299797273383568,
+      "dice_std": 0.07618957381429685,
+      "dice_min": 0.0,
+      "dice_max": 0.31073149364870783,
+      "entropy_mean": 0.04942392824457713,
+      "time_mean": 3.190477714538574
+    },
+    "PA4": {
+      "n_images": 200,
+      "dice_mean": 0.12933568861849276,
+      "dice_std": 0.07342578848884843,
+      "dice_min": 0.0,
+      "dice_max": 0.3038352902728822,
+      "entropy_mean": 0.049410589514366395,
+      "time_mean": 3.180263012647629
+    },
+    "PA5": {
+      "n_images": 200,
+      "dice_mean": 0.12192863913585927,
+      "dice_std": 0.07655278247501077,
+      "dice_min": 0.0,
+      "dice_max": 0.3117018344409396,
+      "entropy_mean": 0.04957105058642716,
+      "time_mean": 6.52725221991539
+    }
+  },
+  "total_time": 5115.715497970581,
+  "warning": "Chỉ 1 seed - không đủ dữ liệu để kết luận thuật toán nào tốt hơn."
+}

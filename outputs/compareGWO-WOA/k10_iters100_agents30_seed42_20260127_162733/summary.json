@@ -1,0 +1,55 @@
+{
+  "config": {
+    "root": "dataset/BDS500/images/val",
+    "n_images": 100,
+    "k": 10,
+    "n_agents": 30,
+    "n_iters": 100,
+    "seed": 42,
+    "woa_b": 1.0,
+    "share_interval": 6,
+    "strategies": [
+      "PA1",
+      "PA2",
+      "PA3",
+      "PA4",
+      "PA5"
+    ],
+    "jitter_samples": 20,
+    "jitter_delta": 2,
+    "jitter_seed": 42,
+    "conv_last_w": 10
+  },
+  "by_strategy": {
+    "PA1": {
+      "n_images": 100,
+      "fe_mean": 0.04855263761230268,
+      "fe_std": 0.002944170613173954,
+      "time_mean_sec": 2.9704624962806703
+    },
+    "PA2": {
+      "n_images": 100,
+      "fe_mean": 0.04869394090243058,
+      "fe_std": 0.002983758943950597,
+      "time_mean_sec": 2.9736204051971438
+    },
+    "PA3": {
+      "n_images": 100,
+      "fe_mean": 0.0483972318083559,
+      "fe_std": 0.0029300962037676335,
+      "time_mean_sec": 2.9963608407974243
+    },
+    "PA4": {
+      "n_images": 100,
+      "fe_mean": 0.04849625904773358,
+      "fe_std": 0.002938199519583832,
+      "time_mean_sec": 3.002913477420807
+    },
+    "PA5": {
+      "n_images": 100,
+      "fe_mean": 0.04869779897449382,
+      "fe_std": 0.002897838553331594,
+      "time_mean_sec": 5.966531946659088
+    }
+  }
+}

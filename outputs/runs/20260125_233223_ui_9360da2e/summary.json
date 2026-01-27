@@ -1,0 +1,19 @@
+{
+  "image_name": "uploaded",
+  "timestamp": "2026-01-25T23:32:23.038409",
+  "total_time": 23.19475531578064,
+  "best_overall_algo": "GWO",
+  "best_overall_f": -0.0451883941208244,
+  "best_overall_entropy": 0.0451883941208244,
+  "results": {
+    "GWO": {
+      "entropy": 0.0451883941208244,
+      "time": 19.355069637298584,
+      "metrics": {
+        "psnr": 15.490387254747795,
+        "ssim": 0.6458151493586929,
+        "dice": 0.1493842343784221
+      }
+    }
+  }
+}

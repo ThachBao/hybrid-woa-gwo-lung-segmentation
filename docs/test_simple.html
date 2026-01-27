@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Test</title>
+</head>
+<body>
+    <h1>Test Page</h1>
+    <div id="historyList">Loading...</div>
+    
+    <script>
+        const historyList = document.getElementById('historyList');
+        
+        async function loadHistory() {
+            try {
+                historyList.innerHTML = 'Fetching...';
+                
+                const res = await fetch('http://localhost:5000/api/runs/list');
+                const data = await res.json();
+                
+                if (data.runs && data.runs.length > 0) {
+                    historyList.innerHTML = `Found ${data.runs.length} runs:<br>` +
+                        data.runs.map(r => `- ${r.run_name}: ${r.image_name}`).join('<br>');
+                } else {
+                    historyList.innerHTML = 'No runs found';
+                }
+            } catch (err) {
+                historyList.innerHTML = `Error: ${err.message}`;
+            }
+        }
+        
+        // Load on page load
+        loadHistory();
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "image_index": 0,
+  "image_name": "101085.jpg",
+  "image_path": "dataset/BDS500/images/val\\101085.jpg",
+  "k": 3,
+  "runs": [
+    {
+      "image_name": "101085.jpg",
+      "strategy": "PA1",
+      "seed": 0,
+      "pa5_share_interval": "",
+      "fe_best": 0.12248843190959698,
+      "jitter_fe_std": 9.587495773159631e-05,
+      "conv_fe_last_std": 0.0
+    },
+    {
+      "image_name": "101085.jpg",
+      "strategy": "PA2",
+      "seed": 0,
+      "pa5_share_interval": "",
+      "fe_best": 0.1229711693587964,
+      "jitter_fe_std": 0.0003389981241049174,
+      "conv_fe_last_std": 0.00022756461590773977
+    },
+    {
+      "image_name": "101085.jpg",
+      "strategy": "PA1",
+      "seed": 1,
+      "pa5_share_interval": "",
+      "fe_best": 0.12627701576372205,
+      "jitter_fe_std": 0.00018917021224387184,
+      "conv_fe_last_std": 0.0017980791205340926
+    },
+    {
+      "image_name": "101085.jpg",
+      "strategy": "PA2",
+      "seed": 1,
+      "pa5_share_interval": "",
+      "fe_best": 0.12213581127767438,
+      "jitter_fe_std": 0.00010924940713655979,
+      "conv_fe_last_std": 0.0
+    }
+  ]
+}
