@@ -1,5 +1,9 @@
 @echo off
 REM Run with multiple seeds (0..29 = 30 seeds)
+<<<<<<< HEAD
+=======
+REM Có thể thay đổi share_interval cho PA5 (mặc định = 4)
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 echo Running with 30 seeds (0..29)...
 echo This will take a VERY long time!
 echo.
@@ -17,7 +21,12 @@ for /L %%s in (0,1,29) do (
     --k 10 ^
     --n_agents 30 ^
     --n_iters 80 ^
+<<<<<<< HEAD
     --seed %%s
+=======
+    --seed %%s ^
+    --share_interval 5
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 )
 
 echo.

@@ -6,7 +6,11 @@
 
 **Windows**:
 ```bash
+<<<<<<< HEAD
 run_compare_quick_test.bat
+=======
+.\run_compare_quick_test.bat
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 ```
 
 **Linux/Mac**:
@@ -20,7 +24,11 @@ python -m src.runner.compare_gwo_woa_strategies \
 
 **Windows**:
 ```bash
+<<<<<<< HEAD
 run_compare_full.bat
+=======
+.\run_compare_full.bat
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 ```
 
 **Linux/Mac**:
@@ -34,7 +42,11 @@ python -m src.runner.compare_gwo_woa_strategies \
 
 **Windows**:
 ```bash
+<<<<<<< HEAD
 run_compare_multi_seed.bat
+=======
+.\run_compare_multi_seed.bat
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 ```
 
 **Linux/Mac**:

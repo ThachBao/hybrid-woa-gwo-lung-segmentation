@@ -3,8 +3,14 @@ So sánh các phương án kết hợp GWO-WOA (PA1..PA5) trên nhiều ảnh.
 
 Kết quả lưu theo từng ảnh và từng strategy:
 - fe_best: FE tốt nhất (FE = -best_f vì fuzzy_entropy_objective trả về -FE)
+<<<<<<< HEAD
 - stability_jitter_*: ổn định khi jitter ngưỡng (std càng nhỏ càng ổn định)
 - stability_conv_*: ổn định hội tụ (std càng nhỏ càng ổn định)
+=======
+- mean_fe: FE trung bình
+- std_fe: Độ lệch chuẩn FE (đo độ ổn định)
+- worst_fe: FE tệ nhất
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 """
 
 from __future__ import annotations
@@ -21,10 +27,13 @@ from typing import Dict, List
 import numpy as np
 
 from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+<<<<<<< HEAD
 from src.objective.thresholding_with_penalties import (
     compute_fe_stability_convergence,
     compute_fe_stability_jitter,
 )
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 from src.optim.bounds import repair_threshold_vector
 from src.optim.hybrid.hybrid_gwo_woa import HybridGWO_WOA
 from src.segmentation.io import ensure_dir, list_image_files, read_image_gray
@@ -52,6 +61,7 @@ def main() -> None:
     ap.add_argument("--share_interval", type=int, default=1)
     ap.add_argument("--strategies", type=str, default="PA1,PA2,PA3,PA4,PA5")
 
+<<<<<<< HEAD
     # FE stability (jitter)
     ap.add_argument("--jitter_samples", type=int, default=20)
     ap.add_argument("--jitter_delta", type=int, default=2)
@@ -60,6 +70,8 @@ def main() -> None:
     # FE stability (convergence)
     ap.add_argument("--conv_last_w", type=int, default=10)
 
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
     args = ap.parse_args()
 
     strategies = _parse_strategies(args.strategies)
@@ -147,6 +159,7 @@ def main() -> None:
 
             print(f"    ✓ Hoàn thành trong {elapsed:.2f}s, FE={fe_best:.6f}")
 
+<<<<<<< HEAD
             stab_j = compute_fe_stability_jitter(
                 gray,
                 best_x,
@@ -181,6 +194,15 @@ def main() -> None:
                 "conv_fe_last_mean": float(stab_c.get("fe_last_mean", 0.0)),
                 "conv_fe_last_std": float(stab_c.get("fe_last_std", 0.0)),
                 "conv_fe_improvement": float(stab_c.get("fe_improvement", 0.0)),
+=======
+            # Chỉ lưu các chỉ số FE quan trọng
+            row = {
+                "image_name": Path(p).name,
+                "strategy": strat,
+                "seed": int(args.seed),
+                "share_interval": int(args.share_interval) if strat == "PA5" else "",
+                "fe_best": fe_best,
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
             }
             rows.append(row)
 
@@ -188,8 +210,11 @@ def main() -> None:
                 "fe_best": fe_best,
                 "thresholds": best_x.tolist(),
                 "time_sec": float(elapsed),
+<<<<<<< HEAD
                 "stability_jitter": stab_j,
                 "stability_convergence": stab_c,
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
             }
 
         with open(os.path.join(run_dir, "per_image", f"{image_key}.json"), "w", encoding="utf-8") as f:
@@ -197,6 +222,7 @@ def main() -> None:
         
         print(f"  ✓ Đã lưu kết quả ảnh {idx+1}/{len(img_paths)}")
 
+<<<<<<< HEAD
     csv_path = os.path.join(run_dir, "results.csv")
     print(f"\n{'=' * 80}")
     print(f"Đang lưu kết quả vào CSV...")
@@ -239,15 +265,84 @@ def main() -> None:
 
     with open(os.path.join(run_dir, "summary.json"), "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
+=======
+    # Sắp xếp theo FE giảm dần
+    rows_sorted = sorted(rows, key=lambda r: float(r["fe_best"]), reverse=True)
+    
+    csv_path = os.path.join(run_dir, "results_sorted.csv")
+    print(f"\n{'=' * 80}")
+    print(f"Đang lưu kết quả vào CSV...")
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        fieldnames = ["image_name", "strategy", "seed", "share_interval", "fe_best"]
+        w = csv.DictWriter(f, fieldnames=fieldnames)
+        w.writeheader()
+        w.writerows(rows_sorted)
+
+    # Tính toán summary với MeanFE, StdFE, WorstFE
+    summary_rows: List[Dict] = []
+    for strat in strategies:
+        strat_rows = [r for r in rows if r["strategy"] == strat]
+        fe = np.array([r["fe_best"] for r in strat_rows], dtype=float)
+
+        summary_rows.append({
+            "strategy": strat,
+            "share_interval": int(args.share_interval) if strat == "PA5" else "",
+            "n_images": int(len(strat_rows)),
+            "mean_fe": float(fe.mean()),
+            "std_fe": float(fe.std(ddof=0)),
+            "worst_fe": float(fe.min()),  # FE nhỏ nhất = worst
+            "best_fe": float(fe.max()),   # FE lớn nhất = best
+        })
+
+    summary_rows_sorted = sorted(summary_rows, key=lambda r: float(r["mean_fe"]), reverse=True)
+    
+    summary_csv = os.path.join(run_dir, "summary_sorted.csv")
+    with open(summary_csv, "w", newline="", encoding="utf-8") as f:
+        fieldnames = ["strategy", "share_interval", "n_images", "mean_fe", "std_fe", "worst_fe", "best_fe"]
+        w = csv.DictWriter(f, fieldnames=fieldnames)
+        w.writeheader()
+        w.writerows(summary_rows_sorted)
+
+    config = {
+        "root": args.root,
+        "n_images": len(img_paths),
+        "k": k,
+        "n_agents": int(args.n_agents),
+        "n_iters": int(args.n_iters),
+        "seed": int(args.seed),
+        "woa_b": float(args.woa_b),
+        "share_interval": int(args.share_interval),
+        "strategies": strategies,
+    }
+    with open(os.path.join(run_dir, "config.json"), "w", encoding="utf-8") as f:
+        json.dump(config, f, ensure_ascii=False, indent=2)
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 
     print(f"\n{'=' * 80}")
     print(f"✅ HOÀN THÀNH!")
     print(f"{'=' * 80}")
     print(f"Kết quả đã lưu tại:")
     print(f"  📁 {run_dir}")
+<<<<<<< HEAD
     print(f"  📄 results.csv")
     print(f"  📄 summary.json")
     print(f"  📁 per_image/ ({len(img_paths)} files)")
+=======
+    print(f"  📄 results_sorted.csv ({len(rows_sorted)} dòng)")
+    print(f"  📄 summary_sorted.csv ({len(summary_rows_sorted)} dòng)")
+    print(f"  📄 config.json")
+    print(f"  📁 per_image/ ({len(img_paths)} files)")
+    print(f"\n🏆 Strategy tốt nhất (theo Mean FE):")
+    if summary_rows_sorted:
+        best = summary_rows_sorted[0]
+        print(f"  Strategy: {best['strategy']}")
+        if best['share_interval']:
+            print(f"  Share interval: {best['share_interval']}")
+        print(f"  Mean FE: {best['mean_fe']:.6f}")
+        print(f"  Std FE: {best['std_fe']:.6f}")
+        print(f"  Worst FE: {best['worst_fe']:.6f}")
+        print(f"  Best FE: {best['best_fe']:.6f}")
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
     print(f"{'=' * 80}")
     print(run_dir)
 

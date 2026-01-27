@@ -2,9 +2,16 @@
 Chạy so sánh PA1..PA5 với seed sweep (0..30) trong 1 lệnh.
 
 Lưu kết quả chỉ gồm:
+<<<<<<< HEAD
 - fe_best
 - jitter_fe_std
 - conv_fe_last_std
+=======
+- fe_best: FE tốt nhất
+- mean_fe: FE trung bình
+- std_fe: Độ lệch chuẩn FE (đo độ ổn định)
+- worst_fe: FE tệ nhất
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 
 Có hỗ trợ quét share_interval cho PA5.
 """
@@ -23,10 +30,13 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 
 from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+<<<<<<< HEAD
 from src.objective.thresholding_with_penalties import (
     compute_fe_stability_convergence,
     compute_fe_stability_jitter,
 )
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 from src.optim.bounds import repair_threshold_vector
 from src.optim.hybrid.hybrid_gwo_woa import HybridGWO_WOA
 from src.segmentation.io import ensure_dir, list_image_files, read_image_gray
@@ -83,6 +93,7 @@ def main() -> None:
     ap.add_argument("--strategies", type=str, default="PA1,PA2,PA3,PA4,PA5")
     ap.add_argument("--limit", type=int, default=0)
 
+<<<<<<< HEAD
     # FE stability (jitter)
     ap.add_argument("--jitter_samples", type=int, default=20)
     ap.add_argument("--jitter_delta", type=int, default=2)
@@ -91,6 +102,8 @@ def main() -> None:
     # FE stability (convergence)
     ap.add_argument("--conv_last_w", type=int, default=10)
 
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
     args = ap.parse_args()
 
     strategies = _parse_strategies(args.strategies)
@@ -222,6 +235,7 @@ def main() -> None:
 
                     print(f"      ✓ FE={fe_best:.6f}, Time={elapsed:.2f}s")
 
+<<<<<<< HEAD
                     stab_j = compute_fe_stability_jitter(
                         gray,
                         best_x,
@@ -232,14 +246,20 @@ def main() -> None:
                     )
                     stab_c = compute_fe_stability_convergence(history, last_w=int(args.conv_last_w))
 
+=======
+                    # Chỉ lưu FE_best, không cần stability metrics
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
                     row = {
                         "image_name": Path(p).name,
                         "strategy": strat,
                         "seed": int(seed),
                         "pa5_share_interval": int(interval) if strat == "PA5" else "",
                         "fe_best": fe_best,
+<<<<<<< HEAD
                         "jitter_fe_std": float(stab_j.get("fe_std", 0.0)),
                         "conv_fe_last_std": float(stab_c.get("fe_last_std", 0.0)),
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
                     }
                     rows.append(row)
                     per_image["runs"].append(row)
@@ -257,12 +277,20 @@ def main() -> None:
     results_csv = os.path.join(run_dir, "results_sorted.csv")
     print(f"Đang lưu results_sorted.csv...")
     with open(results_csv, "w", newline="", encoding="utf-8") as f:
+<<<<<<< HEAD
         fieldnames = ["image_name", "strategy", "seed", "pa5_share_interval", "fe_best", "jitter_fe_std", "conv_fe_last_std"]
+=======
+        fieldnames = ["image_name", "strategy", "seed", "pa5_share_interval", "fe_best"]
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
         w = csv.DictWriter(f, fieldnames=fieldnames)
         w.writeheader()
         w.writerows(rows_sorted)
 
+<<<<<<< HEAD
     # summary theo (strategy, pa5_share_interval)
+=======
+    # summary theo (strategy, pa5_share_interval) với MeanFE, StdFE, WorstFE
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
     print(f"Đang tạo summary...")
     group: Dict[Tuple[str, str], List[Dict]] = {}
     for r in rows:
@@ -272,14 +300,18 @@ def main() -> None:
     summary_rows: List[Dict] = []
     for (strategy, interval), rs in group.items():
         fe = np.array([float(x["fe_best"]) for x in rs], dtype=float)
+<<<<<<< HEAD
         js = np.array([float(x["jitter_fe_std"]) for x in rs], dtype=float)
         cs = np.array([float(x["conv_fe_last_std"]) for x in rs], dtype=float)
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 
         summary_rows.append(
             {
                 "strategy": strategy,
                 "pa5_share_interval": interval,
                 "n_records": int(len(rs)),
+<<<<<<< HEAD
                 "fe_mean": float(fe.mean()),
                 "fe_std": float(fe.std(ddof=0)),
                 "jitter_fe_std_mean": float(js.mean()),
@@ -288,6 +320,16 @@ def main() -> None:
         )
 
     summary_rows_sorted = sorted(summary_rows, key=lambda r: float(r["fe_mean"]), reverse=True)
+=======
+                "mean_fe": float(fe.mean()),
+                "std_fe": float(fe.std(ddof=0)),
+                "worst_fe": float(fe.min()),  # FE nhỏ nhất = worst
+                "best_fe": float(fe.max()),   # FE lớn nhất = best
+            }
+        )
+
+    summary_rows_sorted = sorted(summary_rows, key=lambda r: float(r["mean_fe"]), reverse=True)
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
 
     summary_csv = os.path.join(run_dir, "summary_sorted.csv")
     print(f"Đang lưu summary_sorted.csv...")
@@ -296,10 +338,17 @@ def main() -> None:
             "strategy",
             "pa5_share_interval",
             "n_records",
+<<<<<<< HEAD
             "fe_mean",
             "fe_std",
             "jitter_fe_std_mean",
             "conv_fe_last_std_mean",
+=======
+            "mean_fe",
+            "std_fe",
+            "worst_fe",
+            "best_fe",
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
         ]
         w = csv.DictWriter(f, fieldnames=fieldnames)
         w.writeheader()
@@ -316,10 +365,13 @@ def main() -> None:
         "strategies": strategies,
         "woa_b": float(args.woa_b),
         "pa5_share_intervals": pa5_intervals,
+<<<<<<< HEAD
         "jitter_samples": int(args.jitter_samples),
         "jitter_delta": int(args.jitter_delta),
         "jitter_seed": int(args.jitter_seed),
         "conv_last_w": int(args.conv_last_w),
+=======
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
     }
     with open(os.path.join(run_dir, "config.json"), "w", encoding="utf-8") as f:
         json.dump(config, f, ensure_ascii=False, indent=2)
@@ -331,18 +383,32 @@ def main() -> None:
     print(f"Kết quả đã lưu tại:")
     print(f"  📁 {run_dir}")
     print(f"  📄 results_sorted.csv ({len(rows_sorted)} dòng, đã sort theo FE giảm dần)")
+<<<<<<< HEAD
     print(f"  📄 summary_sorted.csv ({len(summary_rows_sorted)} dòng, đã sort theo FE mean giảm dần)")
     print(f"  📄 config.json")
     print(f"  📁 per_image/ ({len(img_paths)} files)")
     print(f"\n🏆 Strategy tốt nhất (theo FE mean):")
+=======
+    print(f"  📄 summary_sorted.csv ({len(summary_rows_sorted)} dòng, đã sort theo Mean FE giảm dần)")
+    print(f"  📄 config.json")
+    print(f"  📁 per_image/ ({len(img_paths)} files)")
+    print(f"\n🏆 Strategy tốt nhất (theo Mean FE):")
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
     if summary_rows_sorted:
         best = summary_rows_sorted[0]
         print(f"  Strategy: {best['strategy']}")
         if best['pa5_share_interval']:
             print(f"  PA5 share_interval: {best['pa5_share_interval']}")
+<<<<<<< HEAD
         print(f"  FE mean: {best['fe_mean']:.6f}")
         print(f"  Jitter std mean: {best['jitter_fe_std_mean']:.6f}")
         print(f"  Conv std mean: {best['conv_fe_last_std_mean']:.6f}")
+=======
+        print(f"  Mean FE: {best['mean_fe']:.6f}")
+        print(f"  Std FE: {best['std_fe']:.6f}")
+        print(f"  Worst FE: {best['worst_fe']:.6f}")
+        print(f"  Best FE: {best['best_fe']:.6f}")
+>>>>>>> a858546ab813e65700045d86b86a0f25e328c3ba
     print(f"{'=' * 80}")
     print(run_dir)
 
