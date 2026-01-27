@@ -1,0 +1,27 @@
+{
+  "k": 10,
+  "thresholds": [
+    4,
+    39,
+    67,
+    71,
+    77,
+    94,
+    128,
+    136,
+    175,
+    188
+  ],
+  "mean_boundary_dice": 0.21833764244275933,
+  "algo": "GWO",
+  "strategy": "",
+  "n_agents": 10,
+  "n_iters": 10,
+  "seed": 0,
+  "gt_thr": 0.5,
+  "gt_fuse": "max",
+  "num_images": 3,
+  "split": "train",
+  "optimization_time": 1.296675205230713,
+  "load_time": 0.07884621620178223
+}

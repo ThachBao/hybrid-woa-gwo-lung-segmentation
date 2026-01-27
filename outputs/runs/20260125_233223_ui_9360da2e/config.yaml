@@ -1,0 +1,12 @@
+algorithms:
+- GWO
+image_name: uploaded
+k: 10
+n_agents: 30
+n_iters: 80
+penalty_mode: balanced
+seed: null
+share_interval: 1
+timestamp: '2026-01-25T23:32:23.022959'
+use_penalties: true
+woa_b: 1.0

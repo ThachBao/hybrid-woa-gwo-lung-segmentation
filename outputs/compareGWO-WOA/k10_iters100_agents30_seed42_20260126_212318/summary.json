@@ -1,0 +1,65 @@
+{
+  "config": {
+    "root": "dataset/BDS500/images/val",
+    "n_images": 100,
+    "k": 10,
+    "n_agents": 30,
+    "n_iters": 100,
+    "seed": 42,
+    "woa_b": 1.0,
+    "share_interval": 2,
+    "strategies": [
+      "PA1",
+      "PA2",
+      "PA3",
+      "PA4",
+      "PA5"
+    ],
+    "jitter_samples": 20,
+    "jitter_delta": 2,
+    "jitter_seed": 42,
+    "conv_last_w": 10
+  },
+  "by_strategy": {
+    "PA1": {
+      "n_images": 100,
+      "fe_mean": 0.04855263761230268,
+      "fe_std": 0.002944170613173954,
+      "jitter_std_mean": 0.00014513164878187407,
+      "conv_last_std_mean": 6.909685619128683e-06,
+      "time_mean_sec": 3.734659616947174
+    },
+    "PA2": {
+      "n_images": 100,
+      "fe_mean": 0.04869394090243058,
+      "fe_std": 0.002983758943950597,
+      "jitter_std_mean": 0.0001742786691903377,
+      "conv_last_std_mean": 6.934389010905672e-06,
+      "time_mean_sec": 3.712667152881622
+    },
+    "PA3": {
+      "n_images": 100,
+      "fe_mean": 0.0483972318083559,
+      "fe_std": 0.0029300962037676335,
+      "jitter_std_mean": 0.0002100672001090375,
+      "conv_last_std_mean": 1.3516308407880054e-05,
+      "time_mean_sec": 3.8037168645858763
+    },
+    "PA4": {
+      "n_images": 100,
+      "fe_mean": 0.04849625904773358,
+      "fe_std": 0.002938199519583832,
+      "jitter_std_mean": 0.00017100850041037,
+      "conv_last_std_mean": 1.4934247474406198e-05,
+      "time_mean_sec": 3.7534985160827636
+    },
+    "PA5": {
+      "n_images": 100,
+      "fe_mean": 0.04868875493993677,
+      "fe_std": 0.002925565909239034,
+      "jitter_std_mean": 0.00016736446556299138,
+      "conv_last_std_mean": 3.7569283498299023e-06,
+      "time_mean_sec": 7.619772884845734
+    }
+  }
+}
