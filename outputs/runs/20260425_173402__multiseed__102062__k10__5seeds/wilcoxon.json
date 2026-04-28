@@ -1,0 +1,49 @@
+{
+  "base_algorithm": "PA5",
+  "comparisons": [
+    {
+      "vs": "GWO",
+      "boundary_dsc_delta_mean": -0.002180929264652909,
+      "boundary_dsc_p": 0.0625,
+      "fe_delta_mean": 0.49058625039051407,
+      "fe_p": 0.0625,
+      "psnr_delta_mean": -0.3006363778028991,
+      "psnr_p": 0.1875,
+      "ssim_delta_mean": -0.011628352543074816,
+      "ssim_p": 0.0625
+    },
+    {
+      "vs": "WOA",
+      "boundary_dsc_delta_mean": -0.0005958011255947637,
+      "boundary_dsc_p": 0.125,
+      "fe_delta_mean": 0.009746591996886877,
+      "fe_p": 0.1875,
+      "psnr_delta_mean": 0.045486913792071704,
+      "psnr_p": 0.8125,
+      "ssim_delta_mean": 0.0002295567140263577,
+      "ssim_p": 1.0
+    },
+    {
+      "vs": "PSO",
+      "boundary_dsc_delta_mean": 0.0008242349899759138,
+      "boundary_dsc_p": 0.0625,
+      "fe_delta_mean": 0.0973794990550303,
+      "fe_p": 0.0625,
+      "psnr_delta_mean": 0.2622593666362434,
+      "psnr_p": 0.4375,
+      "ssim_delta_mean": 0.003619984589598446,
+      "ssim_p": 0.8125
+    },
+    {
+      "vs": "PA6",
+      "boundary_dsc_delta_mean": -0.0006104007080836304,
+      "boundary_dsc_p": 0.4375,
+      "fe_delta_mean": 0.2109766834287754,
+      "fe_p": 0.0625,
+      "psnr_delta_mean": -0.3549109676505573,
+      "psnr_p": 0.0625,
+      "ssim_delta_mean": -0.008209448946798759,
+      "ssim_p": 0.0625
+    }
+  ]
+}

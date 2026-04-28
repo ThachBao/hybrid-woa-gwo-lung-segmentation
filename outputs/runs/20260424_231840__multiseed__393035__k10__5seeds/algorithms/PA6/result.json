@@ -1,0 +1,40 @@
+{
+  "algorithm": "PA6",
+  "mode": "single_image_multi_seed",
+  "seed": 45,
+  "fe": 35.60176773355721,
+  "boundary_dsc": 0.3004102330351547,
+  "psnr": 32.69443607676051,
+  "ssim": 0.9258601743411214,
+  "time": 12.995666980743408,
+  "thresholds": [
+    29,
+    54,
+    74,
+    99,
+    127,
+    155,
+    179,
+    202,
+    225,
+    246
+  ],
+  "best_f": -35.5986323014326,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "summary_stat": {
+    "n_runs": 5,
+    "n_images": 1,
+    "n_seeds": 5,
+    "boundary_dsc_mean": 0.29919924231612727,
+    "boundary_dsc_sd": 0.0034723019493331226,
+    "fe_mean": 35.482351584033644,
+    "fe_sd": 0.12324531753313878,
+    "psnr_mean": 32.89290347415933,
+    "psnr_sd": 0.5871344025757759,
+    "ssim_mean": 0.9281779440136073,
+    "ssim_sd": 0.006293033876837936,
+    "time_mean": 13.10534029006958,
+    "time_sd": 0.2314695272505474
+  }
+}

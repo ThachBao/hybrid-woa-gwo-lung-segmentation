@@ -1,0 +1,231 @@
+{
+  "run_name": "20260424_220728__single__uploaded__k10",
+  "mode": "single",
+  "image_id": "uploaded",
+  "image_name": "uploaded",
+  "created_at": "2026-04-24T22:07:28.292940",
+  "best_overall_algo": "WOA",
+  "best_overall_f": -37.43009564912096,
+  "best_overall_entropy": 37.43009564912096,
+  "ranking": [
+    {
+      "rank": 1,
+      "algorithm": "WOA",
+      "fe": 37.43009564912096,
+      "boundary_dsc": 0.2163835690600257,
+      "psnr": 31.773645704512546,
+      "ssim": 0.906036532830995,
+      "time": 15.299954891204834
+    },
+    {
+      "rank": 2,
+      "algorithm": "PSO",
+      "fe": 37.422469514516095,
+      "boundary_dsc": 0.2132177084946403,
+      "psnr": 31.544500705635553,
+      "ssim": 0.907487133263436,
+      "time": 30.467944622039795
+    },
+    {
+      "rank": 3,
+      "algorithm": "HYBRID-PA5",
+      "fe": 37.35159522583926,
+      "boundary_dsc": 0.21738210292405913,
+      "psnr": 31.138476670317598,
+      "ssim": 0.9086120072353215,
+      "time": 30.262220859527588
+    },
+    {
+      "rank": 4,
+      "algorithm": "HYBRID-PA6",
+      "fe": 37.27895300170705,
+      "boundary_dsc": 0.20702097524785865,
+      "psnr": 31.55813068933127,
+      "ssim": 0.9141776442901366,
+      "time": 15.377520322799683
+    },
+    {
+      "rank": 5,
+      "algorithm": "GWO",
+      "fe": 36.46238993652545,
+      "boundary_dsc": 0.2224737381954515,
+      "psnr": 30.1100363197153,
+      "ssim": 0.9054208119880517,
+      "time": 16.022321701049805
+    },
+    {
+      "rank": 6,
+      "algorithm": "OTSU",
+      "fe": 35.457603554296796,
+      "boundary_dsc": 0.2002709344086699,
+      "psnr": 33.663040293565636,
+      "ssim": 0.9280306237664991,
+      "time": 0.489915132522583
+    }
+  ],
+  "algorithms_summary": {
+    "GWO": {
+      "algorithm": "GWO",
+      "fe": 36.46238993652545,
+      "entropy": 36.46238993652545,
+      "boundary_dsc": 0.2224737381954515,
+      "psnr": 30.1100363197153,
+      "ssim": 0.9054208119880517,
+      "time": 16.022321701049805,
+      "thresholds": [
+        15,
+        28,
+        41,
+        55,
+        80,
+        105,
+        130,
+        161,
+        192,
+        223
+      ],
+      "history_length": 80,
+      "paths": {
+        "segmented": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/GWO/segmented.png",
+        "overlay": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/GWO/overlay.png",
+        "histogram": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/GWO/histogram.png"
+      }
+    },
+    "WOA": {
+      "algorithm": "WOA",
+      "fe": 37.43009564912096,
+      "entropy": 37.43009564912096,
+      "boundary_dsc": 0.2163835690600257,
+      "psnr": 31.773645704512546,
+      "ssim": 0.906036532830995,
+      "time": 15.299954891204834,
+      "thresholds": [
+        28,
+        52,
+        77,
+        103,
+        129,
+        151,
+        173,
+        194,
+        214,
+        233
+      ],
+      "history_length": 80,
+      "paths": {
+        "segmented": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/WOA/segmented.png",
+        "overlay": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/WOA/overlay.png",
+        "histogram": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/WOA/histogram.png"
+      }
+    },
+    "PSO": {
+      "algorithm": "PSO",
+      "fe": 37.422469514516095,
+      "entropy": 37.422469514516095,
+      "boundary_dsc": 0.2132177084946403,
+      "psnr": 31.544500705635553,
+      "ssim": 0.907487133263436,
+      "time": 30.467944622039795,
+      "thresholds": [
+        27,
+        54,
+        81,
+        106,
+        130,
+        154,
+        176,
+        198,
+        217,
+        236
+      ],
+      "history_length": 80,
+      "paths": {
+        "segmented": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/PSO/segmented.png",
+        "overlay": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/PSO/overlay.png",
+        "histogram": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/PSO/histogram.png"
+      }
+    },
+    "OTSU": {
+      "algorithm": "OTSU",
+      "fe": 35.457603554296796,
+      "entropy": 35.457603554296796,
+      "boundary_dsc": 0.2002709344086699,
+      "psnr": 33.663040293565636,
+      "ssim": 0.9280306237664991,
+      "time": 0.489915132522583,
+      "thresholds": [
+        38,
+        63,
+        83,
+        101,
+        120,
+        138,
+        151,
+        165,
+        180,
+        197
+      ],
+      "history_length": 1,
+      "paths": {
+        "segmented": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/OTSU/segmented.png",
+        "overlay": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/OTSU/overlay.png",
+        "histogram": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/OTSU/histogram.png"
+      }
+    },
+    "HYBRID-PA5": {
+      "algorithm": "HYBRID-PA5",
+      "fe": 37.35159522583926,
+      "entropy": 37.35159522583926,
+      "boundary_dsc": 0.21738210292405913,
+      "psnr": 31.138476670317598,
+      "ssim": 0.9086120072353215,
+      "time": 30.262220859527588,
+      "thresholds": [
+        21,
+        41,
+        61,
+        83,
+        106,
+        131,
+        157,
+        183,
+        209,
+        232
+      ],
+      "history_length": 80,
+      "paths": {
+        "segmented": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/HYBRID-PA5/segmented.png",
+        "overlay": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/HYBRID-PA5/overlay.png",
+        "histogram": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/HYBRID-PA5/histogram.png"
+      }
+    },
+    "HYBRID-PA6": {
+      "algorithm": "HYBRID-PA6",
+      "fe": 37.27895300170705,
+      "entropy": 37.27895300170705,
+      "boundary_dsc": 0.20702097524785865,
+      "psnr": 31.55813068933127,
+      "ssim": 0.9141776442901366,
+      "time": 15.377520322799683,
+      "thresholds": [
+        30,
+        54,
+        75,
+        92,
+        109,
+        132,
+        157,
+        182,
+        208,
+        231
+      ],
+      "history_length": 80,
+      "paths": {
+        "segmented": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/HYBRID-PA6/segmented.png",
+        "overlay": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/HYBRID-PA6/overlay.png",
+        "histogram": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/HYBRID-PA6/histogram.png"
+      }
+    }
+  },
+  "total_time": 111.8213300704956
+}

@@ -70,8 +70,8 @@ class WOA(OptimizerBase):
             for i in range(self.n_agents):
                 x = pop[i]
 
-                r1 = rng.random(dim)
-                r2 = rng.random(dim)
+                r1 = float(rng.random())
+                r2 = float(rng.random())
                 A = 2.0 * a * r1 - a
                 C = 2.0 * r2
 
@@ -79,7 +79,7 @@ class WOA(OptimizerBase):
 
                 if p < 0.5:
                     # khai thác nếu |A|<1, thăm dò nếu |A|>=1
-                    if float(np.max(np.abs(A))) < 1.0:
+                    if abs(A) < 1.0:
                         D = np.abs(C * best_x - x)
                         x_new = best_x - A * D
                     else:

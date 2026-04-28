@@ -91,6 +91,22 @@ def dice_binary(mask_true: np.ndarray, mask_pred: np.ndarray, eps: float = 1e-12
     return float((2.0 * inter) / (sa + sb + eps))
 
 
+def boundary_dice_binary(mask_true: np.ndarray, mask_pred: np.ndarray, eps: float = 1e-12) -> float:
+    """Dice cho boundary mask; công thức giống Dice chuẩn nhưng tên tường minh hơn."""
+    return dice_binary(mask_true, mask_pred, eps=eps)
+
+
+def jaccard_binary(mask_true: np.ndarray, mask_pred: np.ndarray, eps: float = 1e-12) -> float:
+    a = to_bool_mask(mask_true).ravel()
+    b = to_bool_mask(mask_pred).ravel()
+    if a.shape != b.shape:
+        raise ValueError("mask_true và mask_pred phải cùng số phần tử.")
+
+    inter = float(np.sum(a & b))
+    union = float(np.sum(a | b))
+    return float(inter / (union + eps))
+
+
 def dice_multiclass(
     labels_true: np.ndarray,
     labels_pred: np.ndarray,

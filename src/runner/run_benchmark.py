@@ -27,7 +27,7 @@ def make_optimizer(algo: str, n_agents: int, n_iters: int, seed: int | None, str
             woa_b=woa_b,
             share_interval=share_interval,
         )
-    raise ValueError("algo phải là: GWO | WOA | HYBRID")
+    raise ValueError("algo pháº£i lÃ : GWO | WOA | HYBRID")
 
 
 def main():
@@ -40,7 +40,7 @@ def main():
     ap.add_argument("--dim", type=int, default=30)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--woa_b", type=float, default=1.0)
-    ap.add_argument("--share_interval", type=int, default=1)
+    ap.add_argument("--share_interval", type=int, default=10)
     ap.add_argument("--out", type=str, default="outputs/runs/benchmark_results.csv")
     args = ap.parse_args()
 

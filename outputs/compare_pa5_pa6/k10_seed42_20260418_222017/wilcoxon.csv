@@ -1,0 +1,8 @@
+metric,base,challenger,n,statistic,pvalue,status
+fe,PA5,PA6,3,0.0,0.25,ok
+dsc,PA5,PA6,3,0.0,0.25,ok
+iou,PA5,PA6,3,0.0,0.25,ok
+psnr,PA5,PA6,3,0.0,0.25,ok
+ssim,PA5,PA6,3,0.0,0.25,ok
+time_sec,PA5,PA6,3,0.0,0.25,ok
+convergence_iters,PA5,PA6,3,2.0,0.75,ok

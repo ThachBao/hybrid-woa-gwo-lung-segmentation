@@ -1,7 +1,7 @@
 """
 Objective functions for image segmentation
 """
-from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+from src.objective.fuzzy_entropy_s import fuzzy_entropy_objective
 from src.objective.penalties import (
     PenaltyWeights,
     PenaltyParams,

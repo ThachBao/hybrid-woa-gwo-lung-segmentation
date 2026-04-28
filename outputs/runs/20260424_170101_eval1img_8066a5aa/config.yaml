@@ -1,0 +1,24 @@
+algorithms:
+- GWO
+- WOA
+- PSO
+- OTSU
+- PA5
+- PA6
+eval_mode: single_image_multi_seed
+gt_path: dataset/BDS500/ground_truth\test\230063.mat
+image_name: 230063.jpg
+image_path: dataset/BDS500/images\test\230063.jpg
+k: 10
+n_agents: 30
+n_iters: 80
+n_seeds: 2
+run_group_code: 8066a5aa
+seeds:
+- 42
+- 43
+share_interval: 10
+source_single_run_dir: outputs\runs\20260424_170101_ui_8066a5aa
+source_single_run_name: 20260424_170101_ui_8066a5aa
+timestamp: '2026-04-24T17:04:39.655425'
+woa_b: 1.0

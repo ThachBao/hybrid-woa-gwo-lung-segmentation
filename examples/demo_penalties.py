@@ -3,7 +3,7 @@ Demo: Sử dụng penalties để tránh dồn ngưỡng
 """
 import numpy as np
 from src.segmentation.io import read_image_gray
-from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+from src.objective.fuzzy_entropy_s import fuzzy_entropy_objective
 from src.objective.thresholding_with_penalties import (
     create_fe_objective_with_penalties,
     get_recommended_weights,

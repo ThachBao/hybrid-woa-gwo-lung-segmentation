@@ -1,0 +1,25 @@
+{
+  "image_index": 11,
+  "image_path": "dataset/BDS500/images/train\\109034.jpg",
+  "k": 10,
+  "results": {
+    "HYBRID-PA5": {
+      "fe_best": 35.57258646017427,
+      "best_f": -35.57258646017427,
+      "thresholds": [
+        46,
+        74,
+        94,
+        114,
+        134,
+        154,
+        174,
+        194,
+        214,
+        234
+      ],
+      "time_sec": 5.249659299850464,
+      "n_history": 100
+    }
+  }
+}

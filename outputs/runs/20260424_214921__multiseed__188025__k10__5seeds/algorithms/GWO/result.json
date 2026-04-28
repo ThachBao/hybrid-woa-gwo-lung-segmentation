@@ -1,0 +1,40 @@
+{
+  "algorithm": "GWO",
+  "mode": "single_image_multi_seed",
+  "seed": 46,
+  "fe": 36.515423872719104,
+  "boundary_dsc": 0.2819898112076716,
+  "psnr": 31.604749544471954,
+  "ssim": 0.889340042444386,
+  "time": 14.29129672050476,
+  "thresholds": [
+    19,
+    38,
+    57,
+    78,
+    101,
+    124,
+    148,
+    175,
+    203,
+    231
+  ],
+  "best_f": -36.51429229097407,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "summary_stat": {
+    "n_runs": 5,
+    "n_images": 1,
+    "n_seeds": 5,
+    "boundary_dsc_mean": 0.27632711195230747,
+    "boundary_dsc_sd": 0.01392024089844033,
+    "fe_mean": 36.29257494558016,
+    "fe_sd": 0.3563979353580993,
+    "psnr_mean": 31.479235434179486,
+    "psnr_sd": 0.22306130592782297,
+    "ssim_mean": 0.8880208803556793,
+    "ssim_sd": 0.0024169311922173095,
+    "time_mean": 14.40913438796997,
+    "time_sd": 0.3981887177017226
+  }
+}

@@ -12,10 +12,12 @@ from typing import Any, Dict, Optional
 import numpy as np
 import yaml
 
-from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+from src.objective.fuzzy_entropy_s import fuzzy_entropy_objective
 from src.optim.bounds import repair_threshold_vector
 from src.optim.gwo import GWO
 from src.optim.woa import WOA
+from src.optim.pso import PSO
+from src.optim.otsu import OtsuMulti, OtsuUnsupportedError
 from src.optim.hybrid.hybrid_gwo_woa import HybridGWO_WOA
 from src.segmentation.io import read_image_gray, save_image_gray, ensure_dir
 from src.segmentation.apply_thresholds import apply_thresholds
@@ -58,10 +60,14 @@ def _make_optimizer(algo: str, params: Dict[str, Any]):
     if algo_u == "WOA":
         woa_b = float(params.get("woa_b", 1.0))
         return WOA(n_agents=n_agents, n_iters=n_iters, seed=seed, b=woa_b)
+    if algo_u == "PSO":
+        return PSO(n_agents=n_agents, n_iters=n_iters, seed=seed)
+    if algo_u == "OTSU":
+        return OtsuMulti(n_agents=n_agents, n_iters=n_iters, seed=seed)
     if algo_u in ("HYBRID", "GWO_WOA", "GWO-WOA"):
         strategy = str(params.get("strategy", "PA1")).upper()
         woa_b = float(params.get("woa_b", 1.0))
-        share_interval = int(params.get("share_interval", 1))
+        share_interval = int(params.get("share_interval", 10))
         return HybridGWO_WOA(
             n_agents=n_agents,
             n_iters=n_iters,
@@ -70,7 +76,7 @@ def _make_optimizer(algo: str, params: Dict[str, Any]):
             woa_b=woa_b,
             share_interval=share_interval,
         )
-    raise ValueError("algo phải là: GWO | WOA | HYBRID")
+    raise ValueError("algo pháº£i lÃ : GWO | WOA | HYBRID")
 
 
 def main():
@@ -78,7 +84,7 @@ def main():
     ap.add_argument("--image", type=str, required=True)
     ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--algo", type=str, default="GWO")  # GWO | WOA | HYBRID
-    ap.add_argument("--strategy", type=str, default="PA1")  # chỉ khi HYBRID
+    ap.add_argument("--strategy", type=str, default="PA1")  # chá»‰ khi HYBRID
     ap.add_argument("--n_agents", type=int, default=30)
     ap.add_argument("--n_iters", type=int, default=80)
     ap.add_argument("--seed", type=int, default=0)
@@ -96,7 +102,7 @@ def main():
     cfg_woa = _read_yaml(args.config_woa)
     cfg_hybrid = _read_yaml(args.config_hybrid)
 
-    # Ưu tiên CLI override
+    # Æ¯u tiÃªn CLI override
     merged = _merge_dicts(cfg_task, cfg_gwo, cfg_woa, cfg_hybrid)
     merged["k"] = int(args.k)
     merged["algo"] = str(args.algo).upper()
@@ -119,19 +125,26 @@ def main():
         return repair_threshold_vector(x, k=k, lb=lb, ub=ub, integer=True, ensure_unique=True)
 
     def fitness_fn(x: np.ndarray) -> float:
-        # fuzzy_entropy_objective trả về -entropy (minimize)
+        # fuzzy_entropy_objective tráº£ vá» -entropy (minimize)
         return float(fuzzy_entropy_objective(gray, repair_fn(x)))
 
     opt = _make_optimizer(merged["algo"], merged)
 
-    best_x, best_f, history = opt.optimize(
-        fitness_fn,
-        dim=k,
-        lb=np.full(k, lb, dtype=float),
-        ub=np.full(k, ub, dtype=float),
-        repair_fn=repair_fn,
-        init_pop=None,
-    )
+    if str(merged["algo"]).upper() == "OTSU":
+        try:
+            best_x, best_f, history = opt.optimize_with_image(gray, k, fitness_fn=fitness_fn, repair_fn=repair_fn)
+        except OtsuUnsupportedError as exc:
+            raise SystemExit(str(exc)) from exc
+        best_f = float(best_f) if best_f is not None else float(fitness_fn(best_x))
+    else:
+        best_x, best_f, history = opt.optimize(
+            fitness_fn,
+            dim=k,
+            lb=np.full(k, lb, dtype=float),
+            ub=np.full(k, ub, dtype=float),
+            repair_fn=repair_fn,
+            init_pop=None,
+        )
 
     best_x = repair_fn(best_x)
     seg = apply_thresholds(gray, best_x)

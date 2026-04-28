@@ -1,0 +1,21 @@
+mode: single
+image_id: uploaded
+image_name: uploaded
+image_path: ''
+k: 10
+seed: 42
+n_agents: 30
+n_iters: 80
+selected_algorithms:
+- GWO
+- WOA
+- PSO
+- OTSU
+- HYBRID-PA5
+- HYBRID-PA6
+objective_name: FE + light penalties
+penalty_mode: light
+share_interval: 10
+created_at: '2026-04-24T22:36:46.532578'
+woa_b: 1.0
+use_penalties: true

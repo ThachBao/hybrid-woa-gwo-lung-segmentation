@@ -1,0 +1,28 @@
+mode: single_image_multi_seed
+image_id: '102062'
+image_name: 102062.jpg
+image_path: dataset/BDS500/images\test\102062.jpg
+gt_path: dataset/BDS500/ground_truth\test\102062.mat
+k: 10
+start_seed: 42
+seeds:
+- 42
+- 43
+- 44
+- 45
+- 46
+n_seeds: 5
+n_agents: 30
+n_iters: 80
+selected_algorithms:
+- GWO
+- WOA
+- PSO
+- PA5
+- PA6
+objective_name: FE + light penalties
+penalty_mode: light
+share_interval: 10
+created_at: '2026-04-25T17:34:02.396834'
+woa_b: 1.0
+source_single_run_dir: outputs\runs\20260425_172136__single__uploaded__k10

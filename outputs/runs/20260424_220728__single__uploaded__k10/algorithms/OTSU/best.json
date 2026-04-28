@@ -1,0 +1,36 @@
+{
+  "algorithm": "OTSU",
+  "fe": 35.457603554296796,
+  "entropy": 35.457603554296796,
+  "boundary_dsc": 0.2002709344086699,
+  "psnr": 33.663040293565636,
+  "ssim": 0.9280306237664991,
+  "time": 0.489915132522583,
+  "thresholds": [
+    38,
+    63,
+    83,
+    101,
+    120,
+    138,
+    151,
+    165,
+    180,
+    197
+  ],
+  "best_f": -35.457603554296796,
+  "convergence_iterations": 1,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "history_length": 1,
+  "paths": {
+    "segmented": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/OTSU/segmented.png",
+    "overlay": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/OTSU/overlay.png",
+    "histogram": "outputs/runs/20260424_220728__single__uploaded__k10/algorithms/OTSU/histogram.png"
+  },
+  "metrics": {
+    "psnr": 33.663040293565636,
+    "ssim": 0.9280306237664991,
+    "boundary_dsc": 0.2002709344086699
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "algorithm": "PSO",
+  "fe": 35.51202037857883,
+  "entropy": 35.51202037857883,
+  "boundary_dsc": 0.29465460640228275,
+  "psnr": 33.388115068424966,
+  "ssim": 0.9345659424040137,
+  "time": 25.29189944267273,
+  "thresholds": [
+    26,
+    50,
+    71,
+    92,
+    114,
+    137,
+    161,
+    188,
+    217,
+    247
+  ],
+  "best_f": -35.51202037857883,
+  "convergence_iterations": 46,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "history_length": 80,
+  "paths": {
+    "segmented": "outputs/runs/20260424_231037__single__uploaded__k10/algorithms/PSO/segmented.png",
+    "overlay": "outputs/runs/20260424_231037__single__uploaded__k10/algorithms/PSO/overlay.png",
+    "histogram": "outputs/runs/20260424_231037__single__uploaded__k10/algorithms/PSO/histogram.png"
+  },
+  "metrics": {
+    "psnr": 33.388115068424966,
+    "ssim": 0.9345659424040137,
+    "boundary_dsc": 0.29465460640228275
+  }
+}

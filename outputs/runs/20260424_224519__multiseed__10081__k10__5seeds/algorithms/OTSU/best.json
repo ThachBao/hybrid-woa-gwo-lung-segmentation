@@ -1,0 +1,40 @@
+{
+  "algorithm": "OTSU",
+  "mode": "single_image_multi_seed",
+  "seed": 43,
+  "fe": 35.9025083496151,
+  "boundary_dsc": 0.14757967407883119,
+  "psnr": 34.15707777124724,
+  "ssim": 0.9053914640091814,
+  "time": 0.4455578327178955,
+  "thresholds": [
+    50,
+    73,
+    95,
+    114,
+    134,
+    150,
+    162,
+    174,
+    191,
+    221
+  ],
+  "best_f": -35.90024806510914,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "summary_stat": {
+    "n_runs": 5,
+    "n_images": 1,
+    "n_seeds": 5,
+    "boundary_dsc_mean": 0.14757967407883119,
+    "boundary_dsc_sd": 0.0,
+    "fe_mean": 35.9025083496151,
+    "fe_sd": 0.0,
+    "psnr_mean": 34.15707777124724,
+    "psnr_sd": 0.0,
+    "ssim_mean": 0.9053914640091814,
+    "ssim_sd": 0.0,
+    "time_mean": 0.460528564453125,
+    "time_sd": 0.021591792077601455
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "points": [
+    {
+      "iter": 0,
+      "best_f": -12.652449412968952,
+      "fe": 12.652449412968952,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 1,
+      "best_f": -12.767169597056439,
+      "fe": 12.767169597056439,
+      "shared": false,
+      "share_reason": null
+    }
+  ]
+}

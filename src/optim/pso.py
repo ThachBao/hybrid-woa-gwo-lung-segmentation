@@ -12,10 +12,10 @@ class PSO:
         self,
         n_agents=30,
         n_iters=80,
-        w_max=0.1,
-        w_min=0.0,
+        w_max=0.6,
+        w_min=0.4,
         c1=1.2,
-        c2=0.8,
+        c2=1.2,
         seed=None
     ):
         self.n_agents = n_agents
@@ -63,7 +63,7 @@ class PSO:
             X = init_pop.copy()
         else:
             X = self.rng.uniform(lb_val, ub_val, size=(self.n_agents, dim))
-        
+
         V = np.zeros_like(X)
         
         # Personal best
@@ -97,12 +97,12 @@ class PSO:
                 # Update personal best
                 if score < pbest_score[i]:
                     pbest_score[i] = score
-                    pbest[i] = X[i].copy()
+                    pbest[i] = x_repaired.copy()
                 
                 # Update global best
                 if score < gbest_score:
                     gbest_score = score
-                    gbest = X[i].copy()
+                    gbest = x_repaired.copy()
             
             # Update velocity & position
             r1 = self.rng.random((self.n_agents, dim))

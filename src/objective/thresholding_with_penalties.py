@@ -6,7 +6,7 @@ from __future__ import annotations
 import numpy as np
 from typing import Callable
 
-from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+from src.objective.fuzzy_entropy_s import fuzzy_entropy_objective
 from src.objective.penalties import (
     total_penalty,
     PenaltyWeights,

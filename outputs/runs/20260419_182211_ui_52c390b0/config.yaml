@@ -1,0 +1,17 @@
+algorithms:
+- GWO
+- WOA
+- PSO
+- OTSU
+- HYBRID-PA5
+- HYBRID-PA6
+image_name: uploaded
+k: 10
+n_agents: 30
+n_iters: 80
+penalty_mode: null
+seed: 42
+share_interval: 3
+timestamp: '2026-04-19T18:22:11.550048'
+use_penalties: false
+woa_b: 1.0

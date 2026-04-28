@@ -1,0 +1,36 @@
+{
+  "algorithm": "HYBRID-PA5",
+  "fe": 36.834091883070805,
+  "entropy": 36.834091883070805,
+  "boundary_dsc": 0.12733206513202674,
+  "psnr": 32.00518907113563,
+  "ssim": 0.9317600800607221,
+  "time": 33.125062704086304,
+  "thresholds": [
+    32,
+    59,
+    80,
+    101,
+    123,
+    145,
+    167,
+    189,
+    211,
+    233
+  ],
+  "best_f": -36.834091883070805,
+  "convergence_iterations": 80,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "history_length": 80,
+  "paths": {
+    "segmented": "outputs/runs/20260425_172136__single__uploaded__k10/algorithms/HYBRID-PA5/segmented.png",
+    "overlay": "outputs/runs/20260425_172136__single__uploaded__k10/algorithms/HYBRID-PA5/overlay.png",
+    "histogram": "outputs/runs/20260425_172136__single__uploaded__k10/algorithms/HYBRID-PA5/histogram.png"
+  },
+  "metrics": {
+    "psnr": 32.00518907113563,
+    "ssim": 0.9317600800607221,
+    "boundary_dsc": 0.12733206513202674
+  }
+}

@@ -8,7 +8,7 @@ import csv
 import os
 import numpy as np
 
-from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+from src.objective.fuzzy_entropy_s import fuzzy_entropy_objective
 from src.optim.bounds import repair_threshold_vector
 from src.optim.gwo import GWO
 from src.optim.woa import WOA
@@ -33,7 +33,7 @@ def make_optimizer(algo: str, n_agents: int, n_iters: int, seed: int | None, str
         return WOA(n_agents=n_agents, n_iters=n_iters, seed=seed, b=woa_b)
     if algo_u == "HYBRID":
         return HybridGWO_WOA(n_agents=n_agents, n_iters=n_iters, seed=seed, strategy=strategy.upper(), woa_b=woa_b, share_interval=share_interval)
-    raise ValueError("algo phải là: GWO | WOA | HYBRID")
+    raise ValueError("algo pháº£i lÃ : GWO | WOA | HYBRID")
 
 
 def main():
@@ -51,10 +51,10 @@ def main():
     ap.add_argument("--n_iters", type=int, default=80)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--woa_b", type=float, default=1.0)
-    ap.add_argument("--share_interval", type=int, default=1)
+    ap.add_argument("--share_interval", type=int, default=10)
 
     ap.add_argument("--gt_thr", type=float, default=0.5)  # threshold GT boundary
-    ap.add_argument("--gt_fuse", type=str, default="max")  # max|mean (nếu .mat)
+    ap.add_argument("--gt_fuse", type=str, default="max")  # max|mean (náº¿u .mat)
     ap.add_argument("--limit", type=int, default=0)
     args = ap.parse_args()
 

@@ -1,0 +1,424 @@
+{
+  "points": [
+    {
+      "iter": 0,
+      "best_f": -25.732296941500802,
+      "fe": 25.732296941500802,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 1,
+      "best_f": -26.31062739170455,
+      "fe": 26.31062739170455,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 2,
+      "best_f": -26.48962143060812,
+      "fe": 26.48962143060812,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 3,
+      "best_f": -26.510564980703794,
+      "fe": 26.510564980703794,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 4,
+      "best_f": -26.52987233589805,
+      "fe": 26.52987233589805,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 5,
+      "best_f": -26.563110861275263,
+      "fe": 26.563110861275263,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 6,
+      "best_f": -26.563110861275263,
+      "fe": 26.563110861275263,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 7,
+      "best_f": -26.572962816653767,
+      "fe": 26.572962816653767,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 8,
+      "best_f": -26.572962816653767,
+      "fe": 26.572962816653767,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 9,
+      "best_f": -26.57754797852048,
+      "fe": 26.57754797852048,
+      "shared": true,
+      "share_reason": "periodic"
+    },
+    {
+      "iter": 10,
+      "best_f": -26.57754797852048,
+      "fe": 26.57754797852048,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 11,
+      "best_f": -26.57754797852048,
+      "fe": 26.57754797852048,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 12,
+      "best_f": -26.57754797852048,
+      "fe": 26.57754797852048,
+      "shared": true,
+      "share_reason": "stagnation"
+    },
+    {
+      "iter": 13,
+      "best_f": -26.57754797852048,
+      "fe": 26.57754797852048,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 14,
+      "best_f": -26.61386759115512,
+      "fe": 26.61386759115512,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 15,
+      "best_f": -26.620673068246035,
+      "fe": 26.620673068246035,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 16,
+      "best_f": -26.620673068246035,
+      "fe": 26.620673068246035,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 17,
+      "best_f": -26.63172422710009,
+      "fe": 26.63172422710009,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 18,
+      "best_f": -26.642243775915485,
+      "fe": 26.642243775915485,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 19,
+      "best_f": -26.664959296090597,
+      "fe": 26.664959296090597,
+      "shared": true,
+      "share_reason": "periodic"
+    },
+    {
+      "iter": 20,
+      "best_f": -26.691909906435566,
+      "fe": 26.691909906435566,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 21,
+      "best_f": -26.691909906435566,
+      "fe": 26.691909906435566,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 22,
+      "best_f": -26.691909906435566,
+      "fe": 26.691909906435566,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 23,
+      "best_f": -26.72923760499541,
+      "fe": 26.72923760499541,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 24,
+      "best_f": -26.738654524362545,
+      "fe": 26.738654524362545,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 25,
+      "best_f": -26.75057901651499,
+      "fe": 26.75057901651499,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 26,
+      "best_f": -26.75057901651499,
+      "fe": 26.75057901651499,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 27,
+      "best_f": -26.762043038993124,
+      "fe": 26.762043038993124,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 28,
+      "best_f": -26.762043038993124,
+      "fe": 26.762043038993124,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 29,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": true,
+      "share_reason": "periodic"
+    },
+    {
+      "iter": 30,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 31,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 32,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": true,
+      "share_reason": "stagnation"
+    },
+    {
+      "iter": 33,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 34,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 35,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": true,
+      "share_reason": "stagnation"
+    },
+    {
+      "iter": 36,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 37,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 38,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": true,
+      "share_reason": "stagnation"
+    },
+    {
+      "iter": 39,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": true,
+      "share_reason": "periodic"
+    },
+    {
+      "iter": 40,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 41,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 42,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": true,
+      "share_reason": "stagnation"
+    },
+    {
+      "iter": 43,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 44,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 45,
+      "best_f": -26.763078750674698,
+      "fe": 26.763078750674698,
+      "shared": true,
+      "share_reason": "stagnation"
+    },
+    {
+      "iter": 46,
+      "best_f": -26.780366617281754,
+      "fe": 26.780366617281754,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 47,
+      "best_f": -26.783155137297957,
+      "fe": 26.783155137297957,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 48,
+      "best_f": -26.785284865584977,
+      "fe": 26.785284865584977,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 49,
+      "best_f": -26.785284865584977,
+      "fe": 26.785284865584977,
+      "shared": true,
+      "share_reason": "periodic"
+    },
+    {
+      "iter": 50,
+      "best_f": -26.79085502928748,
+      "fe": 26.79085502928748,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 51,
+      "best_f": -26.79085502928748,
+      "fe": 26.79085502928748,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 52,
+      "best_f": -26.79607033374335,
+      "fe": 26.79607033374335,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 53,
+      "best_f": -26.799140207407618,
+      "fe": 26.799140207407618,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 54,
+      "best_f": -26.799140207407618,
+      "fe": 26.799140207407618,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 55,
+      "best_f": -26.799140207407618,
+      "fe": 26.799140207407618,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 56,
+      "best_f": -26.79940450775836,
+      "fe": 26.79940450775836,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 57,
+      "best_f": -26.79940450775836,
+      "fe": 26.79940450775836,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 58,
+      "best_f": -26.79940450775836,
+      "fe": 26.79940450775836,
+      "shared": false,
+      "share_reason": null
+    },
+    {
+      "iter": 59,
+      "best_f": -26.79940450775836,
+      "fe": 26.79940450775836,
+      "shared": true,
+      "share_reason": "periodic"
+    }
+  ]
+}

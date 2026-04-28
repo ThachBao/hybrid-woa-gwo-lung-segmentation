@@ -62,19 +62,18 @@ def gwo_step(rng: np.random.Generator, pop: np.ndarray, fit: np.ndarray, a: floa
 
 
 def woa_step(rng: np.random.Generator, pop: np.ndarray, fit: np.ndarray, best_x: np.ndarray, a: float, b: float, repair_row) -> np.ndarray:
-    dim = pop.shape[1]
     new_pop = pop.copy()
 
     for i in range(pop.shape[0]):
         x = pop[i]
-        r1 = rng.random(dim)
-        r2 = rng.random(dim)
+        r1 = float(rng.random())
+        r2 = float(rng.random())
         A = 2.0 * a * r1 - a
         C = 2.0 * r2
         p = rng.random()
 
         if p < 0.5:
-            if float(np.max(np.abs(A))) < 1.0:
+            if abs(A) < 1.0:
                 D = np.abs(C * best_x - x)
                 x_new = best_x - A * D
             else:

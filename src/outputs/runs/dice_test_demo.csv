@@ -1,4 +1,0 @@
-index,image,gt,dice_boundary,best_f,thresholds,mean_dice
-0,dataset/BDS500/images\test\100007.jpg,dataset/BDS500/ground_truth\test\100007.mat,0.07881481481481481,-0.05010185968067336,"4,38,210,220,227,236,244,247,248,250",
-1,dataset/BDS500/images\test\100039.jpg,dataset/BDS500/ground_truth\test\100039.mat,0.14392713763556833,-0.04436349547109249,"4,30,52,73,93,122,174,177,242,255",
-,,,,,,0.11137097622519157

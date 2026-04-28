@@ -1,270 +1,258 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Image Segmentation & Benchmark</title>
+  <title>PHÂN ĐOẠN ẢNH XÁM ĐA MỨC</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
+
 <body>
   <div class="wrap">
     <header class="header">
-      <h1>🖼️ Image Segmentation with Optimization Algorithms</h1>
-      <p>Phân đoạn ảnh sử dụng GWO, WOA và Hybrid algorithms</p>
+      <h1> PHÂN ĐOẠN ẢNH XÁM ĐA MỨC BẰNG THUẬT TOÁN KẾT HỢP GWO-WOA DỰA TRÊN ĐỘ ĐO MỜ FUZZY ENTROPY</h1>
     </header>
 
     <!-- Navigation Tabs -->
     <nav class="tabs-nav">
       <button class="tab-btn active" data-tab="segment" onclick="window.switchToTab && window.switchToTab('segment')">
-        🖼️ Phân đoạn ảnh
+        🖼️ PHÂN ĐOẠN ẢNH
       </button>
       <button class="tab-btn" data-tab="bds500eval" onclick="window.switchToTab && window.switchToTab('bds500eval')">
-        📊 Đánh giá BDS500
+        📊 ĐÁNH GIÁ
+      </button>
+      <button class="tab-btn" data-tab="cxr" onclick="window.switchToTab && window.switchToTab('cxr')">
+        CXR Demo
       </button>
       <button class="tab-btn" data-tab="history" onclick="window.switchToTab && window.switchToTab('history')">
-        📜 Lịch sử chạy
+        📜 LỊCH SỬ
       </button>
     </nav>
 
     <!-- Tab: Segment -->
     <div class="tab-content active" id="tabSegment">
-    <div class="two-column-layout">
-      <!-- LEFT COLUMN: FORM -->
-      <div class="left-column">
-        <div class="form-card">
-          <form id="formSeg" enctype="multipart/form-data">
-            <div class="form-section">
-              <h2>📁 Chọn ảnh và cấu hình</h2>
-              
-              <div class="form-group">
-                <!-- Chọn nguồn ảnh -->
-                <div class="source-selector">
-                  <label style="font-weight: 600; margin-bottom: 8px; display: block;">Nguồn ảnh:</label>
-                  <div class="source-options">
-                    <label class="source-option">
-                      <input type="radio" name="image_source" value="upload" checked>
-                      <span>📤 Upload ảnh</span>
-                    </label>
-                    <label class="source-option">
-                      <input type="radio" name="image_source" value="bds500">
-                      <span>🗂️ BDS500 Dataset</span>
+      <div class="two-column-layout">
+        <!-- LEFT COLUMN: FORM -->
+        <div class="left-column">
+          <div class="form-card">
+            <form id="formSeg" enctype="multipart/form-data">
+              <div class="form-section">
+                <h2>📁 Chọn ảnh và cấu hình</h2>
+
+                <div class="form-group">
+                  <!-- Chọn nguồn ảnh -->
+                  <div class="source-selector">
+                    <label style="font-weight: 600; margin-bottom: 8px; display: block;">Nguồn ảnh:</label>
+                    <div class="source-options">
+                      <label class="source-option">
+                        <input type="radio" name="image_source" value="upload" checked>
+                        <span>📤 Upload ảnh</span>
+                      </label>
+                      <label class="source-option">
+                        <input type="radio" name="image_source" value="bds500">
+                        <span>🗂️ BDS500 Dataset</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- Upload ảnh -->
+                  <div id="uploadSection" class="upload-section">
+                    <label class="file-input-label">
+                      <span>Chọn ảnh</span>
+                      <input type="file" id="imageFile" name="image" accept="image/*">
                     </label>
                   </div>
-                </div>
 
-                <!-- Upload ảnh -->
-                <div id="uploadSection" class="upload-section">
-                  <label class="file-input-label">
-                    <span>Chọn ảnh</span>
-                    <input type="file" id="imageFile" name="image" accept="image/*">
+                  <!-- Chọn từ BDS500 -->
+                  <div id="bds500Section" class="bds500-section" style="display: none;">
+                    <div class="bds500-controls">
+                      <label>
+                        <span>Split:</span>
+                        <select id="bds500Split">
+                          <option value="test">Test</option>
+                          <option value="train">Train</option>
+                          <option value="val">Val</option>
+                        </select>
+                      </label>
+                      <button type="button" id="btnLoadBDS500" class="btn-secondary">
+                        🔄 Tải danh sách
+                      </button>
+                      <button type="button" id="btnRandomBDS500" class="btn-secondary">
+                        🎲 Chọn ngẫu nhiên
+                      </button>
+                    </div>
+                    <div id="bds500List" class="bds500-list"></div>
+                    <div id="bds500Preview" class="bds500-preview">
+                      <img id="bds500PreviewImg" src="" alt="Preview">
+                      <div id="bds500PreviewLabel" class="bds500-preview-label"></div>
+                    </div>
+                    <input type="hidden" id="selectedImagePath" name="image_path">
+                    <input type="hidden" id="selectedGTPath" name="gt_path">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h2>🎯 Chọn thuật toán</h2>
+                <div class="algo-grid">
+                  <label class="algo-card">
+                    <input type="checkbox" id="chkSegGWO" checked>
+                    <div class="algo-card-content">
+                      <div class="algo-icon">🐺</div>
+                      <div class="algo-name">GWO</div>
+                      <div class="algo-desc">Grey Wolf Optimizer</div>
+                    </div>
                   </label>
+
+                  <label class="algo-card">
+                    <input type="checkbox" id="chkSegWOA" checked>
+                    <div class="algo-card-content">
+                      <div class="algo-icon">🐋</div>
+                      <div class="algo-name">WOA</div>
+                      <div class="algo-desc">Whale Optimization</div>
+                    </div>
+                  </label>
+
+                  <label class="algo-card">
+                    <input type="checkbox" id="chkSegPSO" checked>
+                    <div class="algo-card-content">
+                      <div class="algo-icon">🦅</div>
+                      <div class="algo-name">PSO</div>
+                      <div class="algo-desc">Particle Swarm</div>
+                    </div>
+                  </label>
+
+                  <label class="algo-card hidden-algo">
+                    <input type="checkbox" id="chkSegOTSU">
+                    <div class="algo-card-content">
+                      <div class="algo-icon">📊</div>
+                      <div class="algo-name">OTSU</div>
+                      <div class="algo-desc">Multi-level Otsu</div>
+                    </div>
+                  </label>
+
+                  <label class="algo-card">
+                    <input type="checkbox" id="chkSegPA5" checked>
+                    <div class="algo-card-content">
+                      <div class="algo-icon">🔁</div>
+                      <div class="algo-name">WOA-GWO</div>
+                      <div class="algo-desc">Parallel Sharing</div>
+                    </div>
+                  </label>
+
+                  <label class="algo-card">
+                    <input type="checkbox" id="chkSegPA6" checked>
+                    <div class="algo-card-content">
+                      <div class="algo-icon">🔁</div>
+                      <div class="algo-name">WOA-GWO</div>
+                      <div class="algo-desc">Adaptive WOA/GWO</div>
+                    </div>
+                  </label>
+
                 </div>
 
-                <!-- Chọn từ BDS500 -->
-                <div id="bds500Section" class="bds500-section" style="display: none;">
-                  <div class="bds500-controls">
-                    <label>
-                      <span>Split:</span>
-                      <select id="bds500Split">
-                        <option value="test">Test</option>
-                        <option value="train">Train</option>
-                        <option value="val">Val</option>
-                      </select>
-                    </label>
-                    <button type="button" id="btnLoadBDS500" class="btn-secondary">
-                      🔄 Tải danh sách
-                    </button>
-                    <button type="button" id="btnRandomBDS500" class="btn-secondary">
-                      🎲 Chọn ngẫu nhiên
-                    </button>
-                  </div>
-                  <div id="bds500List" class="bds500-list"></div>
-                  <input type="hidden" id="selectedImagePath" name="image_path">
-                  <input type="hidden" id="selectedGTPath" name="gt_path">
-                </div>
-
-                <div class="info-box">
-                  <strong>k = {{ k_fixed }}</strong> (số ngưỡng)
-                  <span id="bds500Info" style="display: none; margin-left: 10px;">
-                    | <strong>DICE</strong> sẽ được tính với ground truth
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-section">
-              <h2>🎯 Chọn thuật toán</h2>
-              <div class="algo-grid">
-                <label class="algo-card">
-                  <input type="checkbox" id="chkSegGWO" checked>
-                  <div class="algo-card-content">
-                    <div class="algo-icon">🐺</div>
-                    <div class="algo-name">GWO</div>
-                    <div class="algo-desc">Grey Wolf Optimizer</div>
-                  </div>
-                </label>
-
-                <label class="algo-card">
-                  <input type="checkbox" id="chkSegWOA" checked>
-                  <div class="algo-card-content">
-                    <div class="algo-icon">🐋</div>
-                    <div class="algo-name">WOA</div>
-                    <div class="algo-desc">Whale Optimization</div>
-                  </div>
-                </label>
-
-                <label class="algo-card">
-                  <input type="checkbox" id="chkSegPSO" checked>
-                  <div class="algo-card-content">
-                    <div class="algo-icon">🦅</div>
-                    <div class="algo-name">PSO</div>
-                    <div class="algo-desc">Particle Swarm</div>
-                  </div>
-                </label>
-
-                <label class="algo-card">
-                  <input type="checkbox" id="chkSegOTSU" checked>
-                  <div class="algo-card-content">
-                    <div class="algo-icon">📊</div>
-                    <div class="algo-name">OTSU</div>
-                    <div class="algo-desc">Multi-level Otsu</div>
-                  </div>
-                </label>
-
-                <label class="algo-card">
-                  <input type="checkbox" id="chkSegHYB" checked>
-                  <div class="algo-card-content">
-                    <div class="algo-icon">🔀</div>
-                    <div class="algo-name">HYBRID</div>
-                    <div class="algo-desc">Hybrid Algorithms</div>
-                  </div>
-                </label>
               </div>
 
-              <div id="hybridStrategiesDiv" class="strategies-section">
-                <label style="font-weight: 600; margin-bottom: 8px; display: block;">Hybrid Strategies:</label>
-                <div class="strategy-grid">
-                  <label class="strategy-item"><input type="checkbox" class="strategy-chk" value="PA1" checked> PA1</label>
-                  <label class="strategy-item"><input type="checkbox" class="strategy-chk" value="PA2"> PA2</label>
-                  <label class="strategy-item"><input type="checkbox" class="strategy-chk" value="PA3"> PA3</label>
-                  <label class="strategy-item"><input type="checkbox" class="strategy-chk" value="PA4"> PA4</label>
-                  <label class="strategy-item"><input type="checkbox" class="strategy-chk" value="PA5"> PA5</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-section">
-              <h2>🛡️ Penalties (Tránh dồn ngưỡng)</h2>
-              <div class="penalty-options">
-                <label class="penalty-toggle">
-                  <input type="checkbox" id="chkUsePenalties" checked>
-                  <span>Bật penalties (khuyến nghị)</span>
-                </label>
-                <div id="penaltySettings" class="penalty-settings">
+              <div class="form-section">
+                <h2>Tham số</h2>
+                <div class="params-grid">
                   <label>
-                    <span>Mode:</span>
-                    <select name="penalty_mode" id="penaltyMode">
-                      <option value="light">Light (nhẹ)</option>
-                      <option value="balanced" selected>Balanced (cân bằng)</option>
-                      <option value="strong">Strong (mạnh)</option>
-                    </select>
+                    <span>n_agents</span>
+                    <input type="number" name="n_agents" id="segNAgents" min="5" max="500" value="30" required>
+                  </label>
+                  <label>
+                    <span>n_iters</span>
+                    <input type="number" name="n_iters" id="segNIters" min="1" max="5000" value="80" required>
+                  </label>
+                  <label>
+                    <span>seed</span>
+                    <input type="number" name="seed" id="segSeed" min="0" max="999999" value="42" required>
                   </label>
                 </div>
+                <div class="params-grid" style="margin-top: 12px;">
+                  <label>
+                    <span>k (số ngưỡng)</span>
+                    <input type="number" name="k" id="segK" min="2" max="20" value="{{ k_fixed }}" required>
+                  </label>
+
+
+                </div>
               </div>
-            </div>
 
-            <div class="form-section">
-              <h2>⚙️ Tham số</h2>
-              <div class="params-grid">
-                <label>
-                  <span>n_agents</span>
-                  <input type="number" name="n_agents" min="5" max="500" value="30" required>
-                </label>
-                <label>
-                  <span>n_iters</span>
-                  <input type="number" name="n_iters" min="1" max="5000" value="80" required>
-                </label>
-                <label>
-                  <span>seed (rỗng=None)</span>
-                  <input type="text" name="seed" placeholder="0 hoặc 42">
-                </label>
-                <label>
-                  <span>woa_b</span>
-                  <input type="number" name="woa_b" step="0.1" value="1.0">
-                </label>
-                <label>
-                  <span>share_interval (PA5)</span>
-                  <input type="number" name="share_interval" min="1" max="999" value="1">
-                </label>
+              <button type="submit" id="btnSeg" class="btn-primary">
+                <!-- <span class="btn-icon">🚀</span> -->
+                <span>Chạy phân đoạn</span>
+              </button>
+            </form>
+
+            <div class="log-section" style="display: none;">
+              <div class="log-header">
+                <span>📋 Logs</span>
+                <button type="button" id="btnClearLogs" class="btn-clear-logs">Xóa</button>
               </div>
+              <pre id="statusSeg" class="status">Sẵn sàng...</pre>
             </div>
-
-            <div class="info-banner">
-              <span class="info-icon">ℹ️</span>
-              <span>Sau khi phân đoạn ảnh, hệ thống sẽ tự động chạy benchmark cho TẤT CẢ 18 hàm với dim = n_agents</span>
-            </div>
-
-            <button type="submit" id="btnSeg" class="btn-primary">
-              <span class="btn-icon">🚀</span>
-              <span>Chạy phân đoạn & Benchmark</span>
-            </button>
-          </form>
-
-          <pre id="statusSeg" class="status">Sẵn sàng...</pre>
-        </div>
-      </div>
-
-      <!-- RIGHT COLUMN: RESULTS -->
-      <div class="right-column">
-        <div class="results-container">
-          <div id="segResults" class="empty-state">
-            <div class="empty-icon">📊</div>
-            <div class="empty-text">Kết quả sẽ hiển thị ở đây sau khi chạy</div>
           </div>
+        </div>
 
-          <div id="benchmarkResultsSeg" style="display: none;">
-            <div class="section-header">
-              <h2>📊 Kết quả Benchmark</h2>
-              <div id="benchmarkInfo" class="benchmark-info"></div>
+        <!-- RIGHT COLUMN: RESULTS -->
+        <div class="right-column">
+          <div class="results-container">
+            <div id="segResults" class="empty-state">
+              <div class="empty-icon">📊</div>
+              <div class="empty-text">Kết quả sẽ hiển thị ở đây sau khi chạy</div>
             </div>
-            <div id="benchmarkSummary"></div>
-            <div id="benchmarkCharts"></div>
+
+            <!-- Export Benchmark Button -->
+            <div id="exportBenchmarkSection" style="display: none; margin-top: 20px;">
+              <button id="btnExportBenchmark" class="btn-secondary">📊 Xuất Benchmark</button>
+              <div id="exportBenchmarkOut"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
     <!-- End Tab: Segment -->
 
     <!-- Tab: BDS500 Evaluation -->
     <div class="tab-content" id="tabBDS500Eval">
       <div class="bds500-eval-container">
-        <div class="bds500-eval-header">
-          <h2>📊 Đánh giá thuật toán trên BDS500 Dataset</h2>
-          <p class="bds500-eval-desc">Chạy đánh giá toàn bộ dataset với ground truth boundaries và tính DICE score</p>
-        </div>
+        <!-- <div class="bds500-eval-header">
+          <h2>Đánh giá</h2>
+          <p class="bds500-eval-desc">Đánh giá độ ổn định trên 1 ảnh với nhiều seed</p>
+        </div> -->
 
         <div class="bds500-eval-layout">
           <!-- LEFT: Form -->
           <div class="bds500-eval-form-card">
             <form id="formBDS500Eval">
               <div class="form-section">
-                <h3>📁 Dataset Configuration</h3>
+                <h3>Ảnh đánh giá</h3>
+                <div class="warning-banner" style="margin-bottom: 14px;">
+                  <span class="warning-icon">i</span>
+                  <div>
+                    Tab này chỉ chạy theo hướng <strong>1 ảnh × nhiều seed</strong>. Ảnh sẽ lấy từ tab phân đoạn.
+                  </div>
+                </div>
                 <div class="params-grid">
-                  <label>
-                    <span>Split</span>
-                    <select name="split" id="evalSplit">
-                      <option value="test">Test (200 ảnh)</option>
-                      <option value="train">Train (200 ảnh)</option>
-                      <option value="val">Val (100 ảnh)</option>
-                    </select>
+                  <label style="grid-column: 1 / -1;">
+                    <span>Tên ảnh đang dùng</span>
+                    <input type="text" id="evalSelectedImageName" value="Chưa chọn ảnh BSDS500 ở tab phân đoạn"
+                      readonly>
                   </label>
-                  <label>
-                    <span>Limit (số ảnh)</span>
-                    <input type="number" name="limit" min="1" max="500" value="10" required>
+                  <label style="grid-column: 1 / -1;">
+                    <span>Đường dẫn ảnh</span>
+                    <input type="text" id="evalSelectedImagePathDisplay" value="" readonly>
                   </label>
                 </div>
+                <div style="margin-top: 12px;">
+                  <button type="button" id="btnSyncEvalImage" class="btn-secondary">Dùng ảnh đang chọn ở tab phân
+                    đoạn</button>
+                </div>
+                <input type="hidden" name="image_path" id="evalImagePath">
+                <input type="hidden" name="gt_path" id="evalGTPath">
               </div>
 
               <div class="form-section">
@@ -272,39 +260,27 @@
                 <div class="eval-algo-grid">
                   <label class="eval-algo-item">
                     <input type="checkbox" name="algorithms" value="GWO" checked>
-                    <span>🐺 GWO</span>
+                    <span>GWO</span>
                   </label>
                   <label class="eval-algo-item">
                     <input type="checkbox" name="algorithms" value="WOA" checked>
-                    <span>🐋 WOA</span>
+                    <span>WOA</span>
                   </label>
                   <label class="eval-algo-item">
                     <input type="checkbox" name="algorithms" value="PSO" checked>
-                    <span>🦅 PSO</span>
+                    <span>PSO</span>
+                  </label>
+                  <label class="eval-algo-item hidden-algo">
+                    <input type="checkbox" name="algorithms" value="OTSU">
+                    <span>OTSU</span>
                   </label>
                   <label class="eval-algo-item">
-                    <input type="checkbox" name="algorithms" value="OTSU" checked>
-                    <span>📊 OTSU</span>
+                    <input type="checkbox" name="algorithms" value="PA5" checked>
+                    <span>Parallel Sharing</span>
                   </label>
                   <label class="eval-algo-item">
-                    <input type="checkbox" name="algorithms" value="PA1" checked>
-                    <span>🔀 PA1</span>
-                  </label>
-                  <label class="eval-algo-item">
-                    <input type="checkbox" name="algorithms" value="PA2">
-                    <span>🔀 PA2</span>
-                  </label>
-                  <label class="eval-algo-item">
-                    <input type="checkbox" name="algorithms" value="PA3">
-                    <span>🔀 PA3</span>
-                  </label>
-                  <label class="eval-algo-item">
-                    <input type="checkbox" name="algorithms" value="PA4">
-                    <span>🔀 PA4</span>
-                  </label>
-                  <label class="eval-algo-item">
-                    <input type="checkbox" name="algorithms" value="PA5">
-                    <span>🔀 PA5</span>
+                    <input type="checkbox" name="algorithms" value="PA6" checked>
+                    <span>Adaptive</span>
                   </label>
                 </div>
               </div>
@@ -313,34 +289,40 @@
                 <h3>⚙️ Tham số tối ưu</h3>
                 <div class="params-grid">
                   <label>
-                    <span>k (số ngưỡng)</span>
-                    <input type="number" name="k" min="2" max="20" value="10" required>
+                    <span>K (số ngưỡng)</span>
+                    <input type="number" name="k" id="evalK" min="2" max="20" value="10" readonly required>
                   </label>
                   <label>
-                    <span>seed (debug only)</span>
-                    <input type="number" name="seed" min="0" max="9999" value="42" required>
+                    <span>Seed bắt đầu</span>
+                    <input type="number" name="seed_start" id="evalSeedStart" min="0" max="999999" value="42" required>
+                  </label>
+                  <label>
+                    <span>Số lượng seed</span>
+                    <input type="number" name="seed_count" id="evalSeedCount" min="1" max="100" value="5" required>
                   </label>
                   <label>
                     <span>n_agents</span>
-                    <input type="number" name="n_agents" min="5" max="500" value="30" required>
+                    <input type="number" name="n_agents" id="evalNAgents" min="5" max="500" value="30" required>
                   </label>
                   <label>
                     <span>n_iters</span>
-                    <input type="number" name="n_iters" min="1" max="5000" value="80" required>
+                    <input type="number" name="n_iters" id="evalNIters" min="1" max="5000" value="80" required>
                   </label>
+
                 </div>
               </div>
 
               <div class="warning-banner">
-                <span class="warning-icon">⚠️</span>
+                <span class="warning-icon">!</span>
                 <div>
-                  <strong>Lưu ý:</strong> Seed cố định chỉ dùng để debug. Để so sánh thuật toán chính xác, cần chạy với nhiều seed khác nhau (30+ lần).
+                  <strong>Lưu ý:</strong> Để có mean ± SD và Wilcoxon, hãy chạy nhiều seed. Nên bắt đầu với 5-10 seed để
+                  debug, sau đó tăng lên 20 seed khi xuất kết quả báo cáo.
                 </div>
               </div>
 
               <button type="submit" id="btnEvalBDS500" class="btn-primary">
-                <span class="btn-icon">🚀</span>
-                <span>Bắt đầu đánh giá</span>
+                <!-- <span class="btn-icon">🚀</span> -->
+                <span>BẮT ĐẦU ĐÁNH GIÁ</span>
               </button>
             </form>
 
@@ -368,12 +350,187 @@
     </div>
     <!-- End Tab: BDS500 Evaluation -->
 
+    <!-- Tab: CXR Demo -->
+    <div class="tab-content" id="tabCXR">
+      <div class="two-column-layout">
+        <div class="left-column">
+          <div class="form-card">
+            <form id="formCXR" enctype="multipart/form-data">
+              <div class="form-section">
+                <h2>CXR Demo</h2>
+                <div class="source-selector">
+                  <label style="font-weight: 600; margin-bottom: 8px; display: block;">Nguồn ảnh:</label>
+                  <div class="source-options">
+                    <label class="source-option">
+                      <input type="radio" name="cxr_source" value="upload" checked>
+                      <span>Upload file</span>
+                    </label>
+                    <label class="source-option">
+                      <input type="radio" name="cxr_source" value="dataset">
+                      <span>Dataset local</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="cxrUploadSection" class="upload-section">
+                  <label class="file-input-label">
+                    <span>Chon anh CXR</span>
+                    <input type="file" id="cxrImageFile" name="image" accept="image/*">
+                  </label>
+                </div>
+
+                <div id="cxrDatasetSection" class="bds500-section" style="display:none;">
+                  <div class="params-grid">
+                    <label>
+                      <span>Source</span>
+                      <select id="cxrSourceFilter">
+                        <option value="all">all</option>
+                        <option value="montgomery">montgomery</option>
+                        <option value="other">other</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>case_id</span>
+                      <select id="cxrCaseSelect" name="case_id"></select>
+                    </label>
+                  </div>
+                  <button type="button" id="btnLoadCXR" class="btn-secondary" style="margin-top:12px;">Tai danh sach
+                    CXR</button>
+                  <div id="cxrDatasetInfo" class="results-note" style="margin-top:12px;"></div>
+                </div>
+
+                <div id="cxrGTSection" style="margin-top:12px;">
+                  <label class="file-input-label">
+                    <span>Upload GT mask (optional)</span>
+                    <input type="file" id="cxrGTMaskFile" name="gt_mask" accept="image/*">
+                  </label>
+                  <div id="cxrGTHelpText" class="cxr-help-text">
+                    GT mask la mask chuan de doi chieu voi ket qua doan phoi. Co GT thi tinh duoc DSC va IoU, khong co
+                    GT van chay duoc nhung chi xem FE, PSNR, SSIM va QC.
+                  </div>
+                  <div id="cxrGTAutoStatus" class="cxr-auto-gt-status" style="display:none;"></div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h2>PA5</h2>
+                <div class="params-grid">
+                  <label>
+                    <span>Preset</span>
+                    <select id="cxrPreset" name="preset">
+                      <option value="FAST">FAST</option>
+                      <option value="FULL">FULL</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>k</span>
+                    <input type="number" id="cxrK" name="k" min="2" max="20" value="6">
+                  </label>
+                  <label>
+                    <span>seed</span>
+                    <input type="number" id="cxrSeed" name="seed" min="0" max="999999" value="42">
+                  </label>
+                  <label>
+                    <span>n_agents</span>
+                    <input type="number" id="cxrNAgents" name="n_agents" min="5" max="500" value="10">
+                  </label>
+                  <label>
+                    <span>n_iters</span>
+                    <input type="number" id="cxrNIters" name="n_iters" min="1" max="5000" value="25">
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" id="btnRunCXR" class="btn-primary">Chạy phân đoạn phổi</button>
+              <input type="hidden" name="save_history" value="true">
+              <div class="history-actions" style="margin-top:12px;">
+                <a id="btnDownloadCXRMask" class="btn-secondary" href="#" download="cxr_mask.png"
+                  style="display:none;">Tai mask</a>
+                <a id="btnDownloadCXROverlay" class="btn-secondary" href="#" download="cxr_overlay.png"
+                  style="display:none;">Tai overlay</a>
+                <button type="button" id="btnSaveCXRHistory" class="btn-secondary">Lưu lịch sử</button>
+              </div>
+            </form>
+            <pre id="statusCXR" class="status" style="margin-top:12px;">Sẵn sàng...</pre>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="results-container">
+            <div id="cxrResults" class="empty-state">
+              <div class="empty-icon">CXR</div>
+              <div class="empty-text">Kết quả CXR sẽ hiển thị ở đây</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Tab: CXR Demo -->
+
     <!-- Tab: History -->
     <div class="tab-content" id="tabHistory">
       <div class="history-container">
         <div class="history-header">
-          <h2>📜 Lịch sử chạy</h2>
-          <button id="btnRefreshHistory" class="btn-secondary">🔄 Làm mới</button>
+          <h2>📜 Lịch sử các lần chạy</h2>
+          <p class="history-desc">Xem lại tất cả các kết quả phân đoạn đã chạy trước đó</p>
+        </div>
+
+        <div class="history-controls">
+          <div class="history-filters">
+            <label>
+              <span>Lọc theo thuật toán:</span>
+              <select id="historyFilterAlgo">
+                <option value="">Tất cả</option>
+                <option value="GWO">GWO</option>
+                <option value="WOA">WOA</option>
+                <option value="PSO">PSO</option>
+                <option value="PA5">PA5</option>
+                <option value="PA6">PA6</option>
+                <option value="HYBRID">HYBRID</option>
+              </select>
+            </label>
+            <label>
+              <span>Lọc theo k:</span>
+              <select id="historyFilterK">
+                <option value="">Tất cả</option>
+              </select>
+            </label>
+            <label>
+              <span>Tìm kiếm:</span>
+              <input type="text" id="historySearch" placeholder="Tên run...">
+            </label>
+          </div>
+          <div class="history-actions">
+            <button id="btnRefreshHistory" class="btn-secondary">🔄 Làm mới</button>
+            <button id="btnExportHistory" class="btn-secondary">📥 Export JSON</button>
+          </div>
+        </div>
+
+        <div class="history-stats" id="historyStats">
+          <div class="stat-card">
+            <div class="stat-value" id="statTotalRuns">0</div>
+            <div class="stat-label">Tổng số lần chạy</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statGWO">0</div>
+            <div class="stat-label">Single runs</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statWOA">0</div>
+            <div class="stat-label">Multi-seed runs</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statPSO">0</div>
+            <div class="stat-label">Có PA5</div>
+          </div>
+          <div class="stat-card hidden-algo">
+            <div class="stat-value" id="statOTSU">0</div>
+            <div class="stat-label">Có OTSU</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statHYBRID">0</div>
+            <div class="stat-label">Có Hybrid</div>
+          </div>
         </div>
 
         <div id="historyList" class="history-list">
@@ -384,23 +541,34 @@
         </div>
 
         <!-- Run Detail Modal -->
-        <div id="runDetailModal" class="modal" style="display: none;">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 id="runDetailTitle">Chi tiết Run</h3>
-              <button class="modal-close" onclick="closeRunDetail()">&times;</button>
+        <div id="runDetailModal" class="run-detail-modal">
+          <div class="run-detail-content">
+            <div class="run-detail-header">
+              <h3 id="runDetailTitle">Chi tiết lần chạy</h3>
+              <button id="btnCloseRunDetail" class="btn-close">×</button>
             </div>
-            <div class="modal-body" id="runDetailBody">
-              <!-- Content will be loaded here -->
-            </div>
+            <div id="runDetailBody" class="run-detail-body"></div>
           </div>
         </div>
       </div>
     </div>
     <!-- End Tab: History -->
 
+
+
+  </div>
+
+  <!-- Benchmark Fullscreen Viewer -->
+  <div id="benchmarkViewer" class="benchmark-viewer">
+    <div class="benchmark-viewer-header">
+      <button id="btnCloseBenchmarkViewer" class="btn-secondary">← Trở lại</button>
+      <div class="benchmark-viewer-title">Benchmark (Top 6)</div>
+    </div>
+    <div id="benchmarkViewerContent" class="benchmark-viewer-body"></div>
   </div>
 
   <script src="{{ url_for('static', filename='app.js') }}"></script>
+  <script src="{{ url_for('static', filename='history_detail_v2.js') }}"></script>
 </body>
+
 </html>

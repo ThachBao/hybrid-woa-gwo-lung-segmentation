@@ -1,8 +1,0 @@
-k: 5
-algo: HYBRID
-strategy: PA1
-n_agents: 10
-n_iters: 10
-seed: 42
-lb: 0
-ub: 255

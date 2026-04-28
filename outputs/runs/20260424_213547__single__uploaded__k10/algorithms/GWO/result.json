@@ -1,0 +1,36 @@
+{
+  "algorithm": "GWO",
+  "fe": 36.89159136065914,
+  "entropy": 36.89159136065914,
+  "boundary_dsc": 0.24790736337450947,
+  "psnr": 31.52475344833142,
+  "ssim": 0.8519264319412235,
+  "time": 14.794362783432007,
+  "thresholds": [
+    17,
+    37,
+    57,
+    77,
+    99,
+    125,
+    152,
+    180,
+    207,
+    232
+  ],
+  "best_f": -36.89159136065914,
+  "convergence_iterations": 80,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "history_length": 80,
+  "paths": {
+    "segmented": "outputs/runs/20260424_213547__single__uploaded__k10/algorithms/GWO/segmented.png",
+    "overlay": "outputs/runs/20260424_213547__single__uploaded__k10/algorithms/GWO/overlay.png",
+    "histogram": "outputs/runs/20260424_213547__single__uploaded__k10/algorithms/GWO/histogram.png"
+  },
+  "metrics": {
+    "psnr": 31.52475344833142,
+    "ssim": 0.8519264319412235,
+    "boundary_dsc": 0.24790736337450947
+  }
+}

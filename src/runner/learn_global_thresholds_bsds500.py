@@ -28,14 +28,14 @@ def make_optimizer(algo: str, n_agents: int, n_iters: int, seed: int | None, str
         return WOA(n_agents=n_agents, n_iters=n_iters, seed=seed, b=woa_b)
     if algo_u == "HYBRID":
         return HybridGWO_WOA(n_agents=n_agents, n_iters=n_iters, seed=seed, strategy=strategy.upper(), woa_b=woa_b, share_interval=share_interval)
-    raise ValueError("algo phải là: GWO | WOA | HYBRID")
+    raise ValueError("algo pháº£i lÃ : GWO | WOA | HYBRID")
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Tìm ngưỡng tối ưu toàn cục trên BSDS500 train set")
+    ap = argparse.ArgumentParser(description="TÃ¬m ngÆ°á»¡ng tá»‘i Æ°u toÃ n cá»¥c trÃªn BSDS500 train set")
     ap.add_argument("--images_root", type=str, default="dataset/BDS500/images")
     ap.add_argument("--gt_root", type=str, default="dataset/BDS500/ground_truth")
-    ap.add_argument("--split", type=str, default="train")  # train|val|test (để học global)
+    ap.add_argument("--split", type=str, default="train")  # train|val|test (Ä‘á»ƒ há»c global)
     ap.add_argument("--k", type=int, default=10)
 
     ap.add_argument("--algo", type=str, default="GWO")
@@ -44,17 +44,17 @@ def main():
     ap.add_argument("--n_iters", type=int, default=200)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--woa_b", type=float, default=1.0)
-    ap.add_argument("--share_interval", type=int, default=1)
+    ap.add_argument("--share_interval", type=int, default=10)
 
     ap.add_argument("--gt_thr", type=float, default=0.5)
-    ap.add_argument("--gt_fuse", type=str, default="max")  # max|mean nếu .mat
-    ap.add_argument("--limit", type=int, default=0)  # giới hạn số ảnh train để chạy nhanh
+    ap.add_argument("--gt_fuse", type=str, default="max")  # max|mean náº¿u .mat
+    ap.add_argument("--limit", type=int, default=0)  # giá»›i háº¡n sá»‘ áº£nh train Ä‘á»ƒ cháº¡y nhanh
 
     ap.add_argument("--out_dir", type=str, default="outputs/runs/global_thresholds")
     args = ap.parse_args()
 
     print("=" * 80)
-    print("HỌC NGƯỠNG TỐI ƯU TOÀN CỤC TRÊN BSDS500")
+    print("Há»ŒC NGÆ¯á» NG Tá»I Æ¯U TOÃ€N Cá»¤C TRÃŠN BSDS500")
     print("=" * 80)
     print(f"Split: {args.split}")
     print(f"Algorithm: {args.algo} {f'({args.strategy})' if args.algo.upper() == 'HYBRID' else ''}")
@@ -68,27 +68,27 @@ def main():
     if args.limit and args.limit > 0:
         pairs = pairs[: args.limit]
     if not pairs:
-        raise RuntimeError("Không tìm được cặp (image, gt). Kiểm tra đường dẫn và tên file (stem) phải khớp.")
+        raise RuntimeError("KhÃ´ng tÃ¬m Ä‘Æ°á»£c cáº·p (image, gt). Kiá»ƒm tra Ä‘Æ°á»ng dáº«n vÃ  tÃªn file (stem) pháº£i khá»›p.")
 
-    print(f"\nTìm thấy {len(pairs)} cặp ảnh-GT")
-    print("Đang tải ảnh và ground truth vào bộ nhớ...")
+    print(f"\nTÃ¬m tháº¥y {len(pairs)} cáº·p áº£nh-GT")
+    print("Äang táº£i áº£nh vÃ  ground truth vÃ o bá»™ nhá»›...")
 
     os.makedirs(args.out_dir, exist_ok=True)
 
-    # Preload để objective nhanh hơn
+    # Preload Ä‘á»ƒ objective nhanh hÆ¡n
     load_start = time.time()
     images = []
     gts = []
     for idx, (img_path, gt_path) in enumerate(pairs):
         if (idx + 1) % 10 == 0:
-            print(f"  Đã tải {idx + 1}/{len(pairs)} ảnh...")
+            print(f"  ÄÃ£ táº£i {idx + 1}/{len(pairs)} áº£nh...")
         gray = read_image_gray(img_path)
         gt_b = read_bsds_gt_boundary_mask(gt_path, thr=args.gt_thr, fuse=args.gt_fuse)
         images.append(gray)
         gts.append(gt_b)
     
     load_time = time.time() - load_start
-    print(f"✓ Đã tải xong {len(pairs)} ảnh trong {load_time:.2f}s")
+    print(f"âœ“ ÄÃ£ táº£i xong {len(pairs)} áº£nh trong {load_time:.2f}s")
 
     k = int(args.k)
     lb, ub = 0, 255
@@ -97,7 +97,7 @@ def main():
         return repair_threshold_vector(x, k=k, lb=lb, ub=ub, integer=True, ensure_unique=True)
 
     # Objective: minimize (1 - mean Dice)
-    # Tối ưu để tìm ngưỡng có mean DICE cao nhất trên toàn bộ train set
+    # Tá»‘i Æ°u Ä‘á»ƒ tÃ¬m ngÆ°á»¡ng cÃ³ mean DICE cao nháº¥t trÃªn toÃ n bá»™ train set
     eval_count = [0]
     
     def objective(x: np.ndarray) -> float:
@@ -116,7 +116,7 @@ def main():
         return float(1.0 - mean_dice)  # minimize (1 - DICE)
 
     print("\n" + "=" * 80)
-    print("BẮT ĐẦU TỐI ƯU NGƯỠNG")
+    print("Báº®T Äáº¦U Tá»I Æ¯U NGÆ¯á» NG")
     print("=" * 80)
     
     opt_start = time.time()
@@ -136,15 +136,15 @@ def main():
     best_mean_dice = 1.0 - float(best_f)
 
     print("=" * 80)
-    print("KẾT QUẢ TỐI ƯU")
+    print("Káº¾T QUáº¢ Tá»I Æ¯U")
     print("=" * 80)
-    print(f"Thời gian tối ưu: {opt_time:.2f}s")
-    print(f"Số lần đánh giá: {eval_count[0]}")
+    print(f"Thá»i gian tá»‘i Æ°u: {opt_time:.2f}s")
+    print(f"Sá»‘ láº§n Ä‘Ã¡nh giÃ¡: {eval_count[0]}")
     print(f"Mean Boundary-DICE: {best_mean_dice:.4f}")
-    print(f"Ngưỡng tối ưu: {best_x.tolist()}")
+    print(f"NgÆ°á»¡ng tá»‘i Æ°u: {best_x.tolist()}")
     print("=" * 80)
 
-    # Lưu kết quả
+    # LÆ°u káº¿t quáº£
     out = {
         "k": k,
         "thresholds": best_x.tolist(),
@@ -166,8 +166,8 @@ def main():
     with open(out_file, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✓ Đã lưu kết quả vào: {out_file}")
-    print(f"\nĐể test ngưỡng này trên test set, chạy:")
+    print(f"\nâœ“ ÄÃ£ lÆ°u káº¿t quáº£ vÃ o: {out_file}")
+    print(f"\nÄá»ƒ test ngÆ°á»¡ng nÃ y trÃªn test set, cháº¡y:")
     print(f"python -m src.runner.eval_global_thresholds_bsds500 \\")
     print(f"  --thresholds_json {out_file} \\")
     print(f"  --split test")

@@ -34,6 +34,11 @@ def repair_threshold_vector(
     - sort tăng dần
     - (tuỳ chọn) ép strict-increasing để tránh trùng
     - (tuỳ chọn) tránh ngưỡng chạm biên lb/ub (giảm dồn ngưỡng)
+
+    Ghi chú:
+    - Với low-k (k <= 4), không gian nghiệm vốn nhỏ nên không ép tránh biên,
+      nếu không nhiều nghiệm khác nhau sẽ dễ bị repair dồn về cùng một bộ ngưỡng.
+    - Với k lớn hơn, vẫn giữ avoid_endpoints để hạn chế ngưỡng bám sát 0/255.
     """
     x = np.asarray(x, dtype=float).reshape(-1)
     if x.size != k:
@@ -42,9 +47,12 @@ def repair_threshold_vector(
     if integer:
         x = np.rint(x)
 
+    # Low-k cần nới biên để không bóp méo không gian nghiệm quá mạnh.
+    adaptive_avoid_endpoints = bool(avoid_endpoints and k > 4)
+
     # Nếu tránh endpoints, thu hẹp range
-    effective_lb = lb + 1 if avoid_endpoints else lb
-    effective_ub = ub - 1 if avoid_endpoints else ub
+    effective_lb = lb + 1 if adaptive_avoid_endpoints else lb
+    effective_ub = ub - 1 if adaptive_avoid_endpoints else ub
 
     x = np.clip(x, effective_lb, effective_ub)
     x.sort()

@@ -1,0 +1,518 @@
+{
+  "fe": 33.39997493491756,
+  "time": 35.6090669631958,
+  "qc_info": {
+    "num_components": 2,
+    "component_areas": [
+      37938,
+      36106
+    ],
+    "final_area_ratio": 0.28244781494140625,
+    "expanded_underfilled_mask": false,
+    "low_confidence": false,
+    "notes": [],
+    "region_scores": [
+      {
+        "label": 0,
+        "component_id": 1,
+        "area": 2042,
+        "area_ratio": 0.00778961181640625,
+        "bbox": [
+          0,
+          0,
+          165,
+          44
+        ],
+        "centroid": [
+          43.96718903036239,
+          10.605288932419198
+        ],
+        "centroid_norm": [
+          0.08604146581284225,
+          0.02075399008301213
+        ],
+        "mean_intensity": 4.392262487757101,
+        "border_touch_ratio": 0.10235063663075417,
+        "score": 0.3608664988166653
+      },
+      {
+        "label": 0,
+        "component_id": 2,
+        "area": 1186,
+        "area_ratio": 0.00452423095703125,
+        "bbox": [
+          357,
+          0,
+          155,
+          32
+        ],
+        "centroid": [
+          471.141652613828,
+          7.522765598650928
+        ],
+        "centroid_norm": [
+          0.9219993201836164,
+          0.014721654791880485
+        ],
+        "mean_intensity": 5.487352445193929,
+        "border_touch_ratio": 0.15767284991568298,
+        "score": 0.31047048379748304
+      },
+      {
+        "label": 0,
+        "component_id": 3,
+        "area": 1,
+        "area_ratio": 3.814697265625e-06,
+        "bbox": [
+          429,
+          53,
+          1,
+          1
+        ],
+        "centroid": [
+          429.0,
+          53.0
+        ],
+        "centroid_norm": [
+          0.8395303326810176,
+          0.10371819960861056
+        ],
+        "mean_intensity": 1.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.47682790376424544
+      },
+      {
+        "label": 0,
+        "component_id": 4,
+        "area": 2,
+        "area_ratio": 7.62939453125e-06,
+        "bbox": [
+          434,
+          53,
+          2,
+          1
+        ],
+        "centroid": [
+          434.5,
+          53.0
+        ],
+        "centroid_norm": [
+          0.850293542074364,
+          0.10371819960861056
+        ],
+        "mean_intensity": 2.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.47201197191205246
+      },
+      {
+        "label": 0,
+        "component_id": 5,
+        "area": 1,
+        "area_ratio": 3.814697265625e-06,
+        "bbox": [
+          448,
+          53,
+          1,
+          1
+        ],
+        "centroid": [
+          448.0,
+          53.0
+        ],
+        "centroid_norm": [
+          0.8767123287671232,
+          0.10371819960861056
+        ],
+        "mean_intensity": 1.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.46344238517324743
+      },
+      {
+        "label": 0,
+        "component_id": 6,
+        "area": 4,
+        "area_ratio": 1.52587890625e-05,
+        "bbox": [
+          463,
+          53,
+          4,
+          1
+        ],
+        "centroid": [
+          464.5,
+          53.0
+        ],
+        "centroid_norm": [
+          0.9090019569471625,
+          0.10371819960861056
+        ],
+        "mean_intensity": 2.5,
+        "border_touch_ratio": 0.0,
+        "score": 0.45040635432255094
+      },
+      {
+        "label": 0,
+        "component_id": 7,
+        "area": 3,
+        "area_ratio": 1.1444091796875e-05,
+        "bbox": [
+          435,
+          56,
+          1,
+          3
+        ],
+        "centroid": [
+          435.0,
+          57.0
+        ],
+        "centroid_norm": [
+          0.8512720156555773,
+          0.11154598825831702
+        ],
+        "mean_intensity": 1.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.472600897893404
+      },
+      {
+        "label": 0,
+        "component_id": 8,
+        "area": 4,
+        "area_ratio": 1.52587890625e-05,
+        "bbox": [
+          437,
+          57,
+          2,
+          2
+        ],
+        "centroid": [
+          437.5,
+          57.5
+        ],
+        "centroid_norm": [
+          0.8561643835616438,
+          0.11252446183953033
+        ],
+        "mean_intensity": 8.75,
+        "border_touch_ratio": 0.0,
+        "score": 0.4635455278001612
+      },
+      {
+        "label": 0,
+        "component_id": 9,
+        "area": 1,
+        "area_ratio": 3.814697265625e-06,
+        "bbox": [
+          429,
+          61,
+          1,
+          1
+        ],
+        "centroid": [
+          429.0,
+          61.0
+        ],
+        "centroid_norm": [
+          0.8395303326810176,
+          0.11937377690802348
+        ],
+        "mean_intensity": 2.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.4758867272936572
+      },
+      {
+        "label": 0,
+        "component_id": 10,
+        "area": 1,
+        "area_ratio": 3.814697265625e-06,
+        "bbox": [
+          434,
+          61,
+          1,
+          1
+        ],
+        "centroid": [
+          434.0,
+          61.0
+        ],
+        "centroid_norm": [
+          0.8493150684931506,
+          0.11937377690802348
+        ],
+        "mean_intensity": 3.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.47142304593070106
+      },
+      {
+        "label": 0,
+        "component_id": 11,
+        "area": 1,
+        "area_ratio": 3.814697265625e-06,
+        "bbox": [
+          448,
+          61,
+          1,
+          1
+        ],
+        "centroid": [
+          448.0,
+          61.0
+        ],
+        "centroid_norm": [
+          0.8767123287671232,
+          0.11937377690802348
+        ],
+        "mean_intensity": 3.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.4615600322320709
+      },
+      {
+        "label": 0,
+        "component_id": 12,
+        "area": 3,
+        "area_ratio": 1.1444091796875e-05,
+        "bbox": [
+          464,
+          61,
+          3,
+          1
+        ],
+        "centroid": [
+          465.0,
+          61.0
+        ],
+        "centroid_norm": [
+          0.9099804305283757,
+          0.11937377690802348
+        ],
+        "mean_intensity": 4.333333333333333,
+        "border_touch_ratio": 0.0,
+        "score": 0.4483286136372357
+      },
+      {
+        "label": 0,
+        "component_id": 13,
+        "area": 301,
+        "area_ratio": 0.001148223876953125,
+        "bbox": [
+          311,
+          95,
+          27,
+          24
+        ],
+        "centroid": [
+          324.2159468438538,
+          106.80066445182725
+        ],
+        "centroid_norm": [
+          0.6344734771895378,
+          0.20900325724428032
+        ],
+        "mean_intensity": 8.92358803986711,
+        "border_touch_ratio": 0.0,
+        "score": 0.6631908771154209
+      },
+      {
+        "label": 0,
+        "component_id": 14,
+        "area": 287,
+        "area_ratio": 0.001094818115234375,
+        "bbox": [
+          189,
+          106,
+          28,
+          19
+        ],
+        "centroid": [
+          203.90592334494772,
+          114.83275261324042
+        ],
+        "centroid_norm": [
+          0.3990331180918742,
+          0.22472162938011822
+        ],
+        "mean_intensity": 9.595818815331011,
+        "border_touch_ratio": 0.0,
+        "score": 0.6746205636280573
+      },
+      {
+        "label": 0,
+        "component_id": 15,
+        "area": 7,
+        "area_ratio": 2.6702880859375e-05,
+        "bbox": [
+          181,
+          171,
+          3,
+          3
+        ],
+        "centroid": [
+          182.0,
+          172.0
+        ],
+        "centroid_norm": [
+          0.3561643835616438,
+          0.33659491193737767
+        ],
+        "mean_intensity": 10.714285714285714,
+        "border_touch_ratio": 0.0,
+        "score": 0.6581351444687464
+      },
+      {
+        "label": 0,
+        "component_id": 16,
+        "area": 21,
+        "area_ratio": 8.0108642578125e-05,
+        "bbox": [
+          181,
+          180,
+          7,
+          9
+        ],
+        "centroid": [
+          184.14285714285714,
+          183.71428571428572
+        ],
+        "centroid_norm": [
+          0.3603578417668437,
+          0.35951915012580377
+        ],
+        "mean_intensity": 10.428571428571429,
+        "border_touch_ratio": 0.0,
+        "score": 0.6599136969856436
+      },
+      {
+        "label": 0,
+        "component_id": 17,
+        "area": 9,
+        "area_ratio": 3.4332275390625e-05,
+        "bbox": [
+          185,
+          208,
+          4,
+          3
+        ],
+        "centroid": [
+          186.33333333333334,
+          208.88888888888889
+        ],
+        "centroid_norm": [
+          0.3646444879321592,
+          0.40878451837355945
+        ],
+        "mean_intensity": 9.88888888888889,
+        "border_touch_ratio": 0.0,
+        "score": 0.6619648261130936
+      },
+      {
+        "label": 0,
+        "component_id": 18,
+        "area": 1,
+        "area_ratio": 3.814697265625e-06,
+        "bbox": [
+          189,
+          214,
+          1,
+          1
+        ],
+        "centroid": [
+          189.0,
+          214.0
+        ],
+        "centroid_norm": [
+          0.3698630136986301,
+          0.4187866927592955
+        ],
+        "mean_intensity": 11.0,
+        "border_touch_ratio": 0.0,
+        "score": 0.6627977437550363
+      },
+      {
+        "label": 0,
+        "component_id": 19,
+        "area": 43135,
+        "area_ratio": 0.16454696655273438,
+        "bbox": [
+          0,
+          239,
+          512,
+          273
+        ],
+        "centroid": [
+          231.2180827634172,
+          459.188454851049
+        ],
+        "centroid_norm": [
+          0.4524815709655914,
+          0.898607543739822
+        ],
+        "mean_intensity": 3.0217224991306364,
+        "border_touch_ratio": 0.023762605772574476,
+        "score": 0.8305459940491066
+      },
+      {
+        "label": 0,
+        "component_id": 20,
+        "area": 1,
+        "area_ratio": 3.814697265625e-06,
+        "bbox": [
+          511,
+          251,
+          1,
+          1
+        ],
+        "centroid": [
+          511.0,
+          251.0
+        ],
+        "centroid_norm": [
+          1.0,
+          0.4911937377690802
+        ],
+        "mean_intensity": 11.0,
+        "border_touch_ratio": 1.0,
+        "score": 0.38964705882352946
+      }
+    ],
+    "mask_source": "threshold_union",
+    "candidate_quality": {
+      "score": 0.8422534177238501,
+      "area_ratio": 0.2761993408203125,
+      "component_count": 2,
+      "major_component_count": 2,
+      "separation_score": 0.9326082710583792,
+      "lateral_score": 0.8384059790702184,
+      "vertical_score": 0.5341956276600512,
+      "bottom_score": 1.0,
+      "width_score": 0.6730238970588236
+    },
+    "fallback_quality": null,
+    "fallback_info": null,
+    "threshold_union_info": {
+      "fallback_components": 3,
+      "fallback_selected_areas": [
+        36307,
+        36097
+      ],
+      "threshold_union_cutoff": 137,
+      "threshold_union_quality": {
+        "score": 0.8422534177238501,
+        "area_ratio": 0.2761993408203125,
+        "component_count": 2,
+        "major_component_count": 2,
+        "separation_score": 0.9326082710583792,
+        "lateral_score": 0.8384059790702184,
+        "vertical_score": 0.5341956276600512,
+        "bottom_score": 1.0,
+        "width_score": 0.6730238970588236
+      }
+    },
+    "objective_name": "CXR-FE-shape",
+    "objective_score": 43.50701594760376,
+    "shape_score": 0.8422534177238501,
+    "shape_penalty": 0.0
+  },
+  "dsc": 0.8276037724864644,
+  "iou": 0.7059079115613323,
+  "psnr": 10.439748612288964,
+  "ssim": 0.8582907495856517
+}

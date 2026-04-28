@@ -1,0 +1,21 @@
+algorithms:
+- GWO
+- WOA
+- PSO
+- OTSU
+- PA5
+- PA6
+eval_mode: single_image_multi_seed
+gt_path: dataset/BDS500/ground_truth\test\202000.mat
+image_name: 202000.jpg
+image_path: dataset/BDS500/images\test\202000.jpg
+k: 10
+n_agents: 30
+n_iters: 80
+n_seeds: 2
+seeds:
+- 42
+- 43
+share_interval: 10
+timestamp: '2026-04-24T16:53:43.186457'
+woa_b: 1.0

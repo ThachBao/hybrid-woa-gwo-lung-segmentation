@@ -1,0 +1,36 @@
+{
+  "algorithm": "WOA",
+  "fe": 35.92891921067208,
+  "entropy": 35.92891921067208,
+  "boundary_dsc": 0.13653483099166105,
+  "psnr": 32.23997356545396,
+  "ssim": 0.9256803012817196,
+  "time": 16.218843936920166,
+  "thresholds": [
+    38,
+    67,
+    88,
+    109,
+    130,
+    151,
+    172,
+    193,
+    214,
+    234
+  ],
+  "best_f": -35.92891921067208,
+  "convergence_iterations": 78,
+  "objective_name": "FE + light penalties",
+  "penalty_mode": "light",
+  "history_length": 80,
+  "paths": {
+    "segmented": "outputs/runs/20260424_221921__single__uploaded__k10/algorithms/WOA/segmented.png",
+    "overlay": "outputs/runs/20260424_221921__single__uploaded__k10/algorithms/WOA/overlay.png",
+    "histogram": "outputs/runs/20260424_221921__single__uploaded__k10/algorithms/WOA/histogram.png"
+  },
+  "metrics": {
+    "psnr": 32.23997356545396,
+    "ssim": 0.9256803012817196,
+    "boundary_dsc": 0.13653483099166105
+  }
+}

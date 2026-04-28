@@ -16,7 +16,7 @@ Hệ thống phân đoạn ảnh sử dụng Fuzzy Entropy kết hợp với cá
 
 ### 1. Phân đoạn ảnh với Fuzzy Entropy
 - Tối ưu ngưỡng phân đoạn đa mức (k=10 ngưỡng)
-- 3 thuật toán: GWO, WOA, Hybrid (PA1-PA5)
+- 4 nhóm thuật toán: GWO, WOA, PSO, Hybrid (PA1-PA6)
 - Tự động chạy benchmark trên 18 hàm chuẩn
 
 ### 2. Penalties để tránh dồn ngưỡng
@@ -42,6 +42,13 @@ Hệ thống phân đoạn ảnh sử dụng Fuzzy Entropy kết hợp với cá
 - So sánh nhiều thuật toán
 - Xem benchmark results
 - **Tự động lưu kết quả vào outputs/runs** ⭐ MỚI
+
+### 6. Quản lý lịch sử chạy ⭐ MỚI
+- Tự động lưu tất cả thông tin mỗi lần chạy
+- Xem lại kết quả các lần chạy trước
+- Lọc và tìm kiếm theo thuật toán, tham số
+- Web viewer để xem lịch sử trực quan
+- Export tóm tắt ra JSON
 
 ## 🔧 Cài đặt
 
@@ -148,7 +155,7 @@ python -m src.runner.run_single ^
 - `--image`: Đường dẫn ảnh
 - `--k`: Số ngưỡng (default: 10)
 - `--algo`: GWO | WOA | HYBRID
-- `--strategy`: PA1 | PA2 | PA3 | PA4 | PA5 (cho HYBRID)
+- `--strategy`: PA1 | PA2 | PA3 | PA4 | PA5 | PA6 (cho HYBRID)
 - `--n_agents`: Số cá thể (default: 30)
 - `--n_iters`: Số vòng lặp (default: 100)
 - `--seed`: Random seed
@@ -173,6 +180,17 @@ python -m src.runner.run_dataset ^
 - `--limit`: Giới hạn số ảnh (0 = tất cả)
 - `--gt_thr`: Ngưỡng boundary GT (default: 0.5)
 - `--gt_fuse`: max | mean
+
+**Kiểm tra dataset trước khi chạy**:
+```bash
+# Kiểm tra tính toàn vẹn của BSDS500
+python scripts/verify_bsds500.py
+
+# Output mong đợi:
+# TRAIN: 200/200 images, 200/200 GT ✓
+# VAL:   100/100 images, 100/100 GT ✓
+# TEST:  200/200 images, 200/200 GT ✓
+```
 
 ### 3. Đánh giá DICE score
 
@@ -244,12 +262,19 @@ So sánh kết quả có/không có penalties.
 
 ### Hướng dẫn chi tiết
 
-1. **[BDS500_USAGE.md](docs/BDS500_USAGE.md)** - Hướng dẫn sử dụng BDS500 dataset
-2. **[PENALTIES_USAGE.md](docs/PENALTIES_USAGE.md)** - Hướng dẫn sử dụng penalties
-3. **[GLOBAL_THRESHOLDS.md](docs/GLOBAL_THRESHOLDS.md)** - Tối ưu ngưỡng toàn cục
-4. **[SAVE_RESULTS_USAGE.md](docs/SAVE_RESULTS_USAGE.md)** - Lưu và xem lại kết quả ⭐ MỚI
-5. **[TOM_TAT_HOAN_THANH.md](docs/TOM_TAT_HOAN_THANH.md)** - Tóm tắt penalties (Tiếng Việt)
-6. **[VISUAL_COMPARISON.md](docs/VISUAL_COMPARISON.md)** - So sánh trực quan
+1. **[BSDS500_DATASET_DESCRIPTION.md](docs/BSDS500_DATASET_DESCRIPTION.md)** - Mô tả chi tiết bộ dữ liệu BSDS500 ⭐ CẬP NHẬT
+   - Cấu trúc dataset (train/val/test: 200/100/200 ảnh)
+   - Phương pháp chuyển đổi sang grayscale (ITU-R BT.601)
+   - Xử lý ground truth boundaries
+   - Triển khai trong code với ví dụ cụ thể
+   - Hướng dẫn tái lập thực nghiệm
+2. **[BDS500_USAGE.md](docs/BDS500_USAGE.md)** - Hướng dẫn sử dụng BDS500 dataset
+3. **[PENALTIES_USAGE.md](docs/PENALTIES_USAGE.md)** - Hướng dẫn sử dụng penalties
+4. **[GLOBAL_THRESHOLDS.md](docs/GLOBAL_THRESHOLDS.md)** - Tối ưu ngưỡng toàn cục
+5. **[SAVE_RESULTS_USAGE.md](docs/SAVE_RESULTS_USAGE.md)** - Lưu và xem lại kết quả ⭐ MỚI
+6. **[HISTORY_GUIDE.md](HISTORY_GUIDE.md)** - Quản lý lịch sử chạy ⭐ MỚI
+7. **[TOM_TAT_HOAN_THANH.md](docs/TOM_TAT_HOAN_THANH.md)** - Tóm tắt penalties (Tiếng Việt)
+8. **[VISUAL_COMPARISON.md](docs/VISUAL_COMPARISON.md)** - So sánh trực quan
 
 ### Tài liệu kỹ thuật
 
@@ -284,7 +309,7 @@ So sánh kết quả có/không có penalties.
 │   ├── metrics/              # Metrics
 │   │   └── quality.py
 │   ├── objective/            # Objective functions
-│   │   ├── fuzzy_entropy.py
+│   │   ├── fuzzy_entropy_s.py
 │   │   ├── penalties.py
 │   │   ├── thresholding.py
 │   │   └── thresholding_with_penalties.py
@@ -362,23 +387,30 @@ python -m src.ui.app
 # → Kết quả lưu tại outputs/runs/YYYYMMDD_HHMMSS_ui_hash/
 ```
 
-### Ví dụ 3: Xem lại kết quả đã lưu
+### Ví dụ 3: Xem lại lịch sử chạy ⭐ MỚI
 
 ```bash
-# Xem run mới nhất
-ls -lt outputs/runs/ | head -2
+# Xem 10 lần chạy gần nhất
+python view_history.py
 
-# Xem summary
-cat outputs/runs/20260122_143052_ui_a3f7b2c1/summary.json
+# Xem tất cả các lần chạy
+python view_history.py --list
 
-# Xem config
-cat outputs/runs/20260122_143052_ui_a3f7b2c1/config.yaml
+# Xem chi tiết một lần chạy
+python view_history.py --run 20260224_143052_GWO_a3f7b2c1
 
-# Xem ảnh kết quả
-start outputs/runs/20260122_143052_ui_a3f7b2c1/GWO/segmented.png
+# Lọc theo thuật toán
+python view_history.py --algo HYBRID --list
+
+# Tạo web viewer
+python src/runner/web_viewer.py
+# Mở: outputs/history_viewer.html
+
+# Demo hệ thống lịch sử
+python demo_history.py
 ```
 
-### Ví dụ 3: Dùng penalties
+### Ví dụ 4: Dùng penalties
 
 ```bash
 # Trong Web UI:
@@ -389,7 +421,7 @@ start outputs/runs/20260122_143052_ui_a3f7b2c1/GWO/segmented.png
 # → Kết quả lưu với thông tin penalties
 ```
 
-### Ví dụ 4: Đánh giá trên BDS500
+### Ví dụ 5: Đánh giá trên BDS500
 
 ```bash
 # Trong Web UI:
@@ -400,7 +432,7 @@ start outputs/runs/20260122_143052_ui_a3f7b2c1/GWO/segmented.png
 # → Xem DICE score
 ```
 
-### Ví dụ 5: Tối ưu ngưỡng toàn cục
+### Ví dụ 6: Tối ưu ngưỡng toàn cục
 
 ```bash
 # Bước 1: Học trên train (50 ảnh)

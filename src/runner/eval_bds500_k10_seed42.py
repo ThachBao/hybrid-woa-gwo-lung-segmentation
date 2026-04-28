@@ -20,7 +20,7 @@ from typing import Dict, List
 import numpy as np
 
 from src.data.bsds500 import load_bsds500
-from src.objective.fuzzy_entropy import fuzzy_entropy_objective
+from src.objective.fuzzy_entropy_s import fuzzy_entropy_objective
 from src.optim.bounds import repair_threshold_vector
 from src.optim.gwo import GWO
 from src.optim.woa import WOA
@@ -43,7 +43,7 @@ logger = logging.getLogger(__name__)
 # ============================================================
 # CẤU HÌNH CỐ ĐỊNH (KHÔNG THAY ĐỔI)
 # ============================================================
-K = 10          # Số ngưỡng (11 lớp)
+K = 3       # Số ngưỡng (11 lớp)
 SEED = 42       # Seed cố định cho reproducibility
 LB = 0          # Lower bound
 UB = 255        # Upper bound
@@ -52,7 +52,7 @@ UB = 255        # Upper bound
 N_AGENTS = 30
 N_ITERS = 80
 WOA_B = 1.0
-SHARE_INTERVAL = 1
+SHARE_INTERVAL = 10
 
 # Dataset
 SPLIT = "train"  # "train", "val", hoặc "test"
@@ -72,6 +72,7 @@ ALGORITHMS = {
     "HYBRID-PA3": {"type": "HYBRID", "strategy": "PA3"},
     "HYBRID-PA4": {"type": "HYBRID", "strategy": "PA4"},
     "HYBRID-PA5": {"type": "HYBRID", "strategy": "PA5"},
+    "HYBRID-PA6": {"type": "HYBRID", "strategy": "PA6"},
 }
 
 
